@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="クラウディア(仮)" SizeToContent="WidthAndHeight">
     <Grid>
-        <Image Source="Images/クラウディアdefault.png" Width="540" Height="960" />
+        <Image x:Name="CloudiaImage" Source="Images/クラウディアdefault.png" Width="540" Height="960" />
     </Grid>
 </Window>
