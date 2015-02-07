@@ -13,6 +13,5 @@
         <MediaElement x:Name="HatSound" Source="Media/voice_25hi.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="FaceSound" Source="Media/37ah.wav" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <Image x:Name="CloudiaImage" Source="Images/クラウディアdefault.png" Width="540" Height="960" />
-        <!--<MediaElement x:Name="Sound1" Source="Sound/bell03.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />-->
     </Grid>
 </Window>
