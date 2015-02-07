@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KabeDon.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="クラウディア(仮)" SizeToContent="WidthAndHeight">
     <Grid>
-        
+        <Image Source="Images/クラウディアdefault.png" Width="540" Height="960" />
     </Grid>
 </Window>
