@@ -1,18 +1,26 @@
 ﻿using System;
-using System.Windows;
+using Windows.Foundation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
-namespace KabeDon.Wpf
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+
+namespace KabeDon
 {
-    public partial class MainWindow
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class MainPage : Page
     {
-        public MainWindow()
+        public MainPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            Loaded += MainWindow_Loaded;
+            Loaded += MainPage_Loaded;
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             _areaSettings = new[]
             {
@@ -23,15 +31,15 @@ namespace KabeDon.Wpf
                 new AreaInfo(new Rect(406, 466, 306, 274), FaceSound),
             };
 
-            CloudiaImage.MouseDown += CloudiaImage_MouseDown;
+            CloudiaImage.Tapped += CloudiaImage_Tapped; ;
         }
 
         private AreaInfo[] _areaSettings;
         private Rect ForbiddenArea = new Rect(142, 413, 182, 547);
 
-        private void CloudiaImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CloudiaImage_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var position = e.MouseDevice.GetPosition(CloudiaImage);
+            var position = e.GetPosition(CloudiaImage);
             position.X *= 1080 / CloudiaImage.ActualWidth;
             position.Y *= 1920 / CloudiaImage.ActualHeight;
 
