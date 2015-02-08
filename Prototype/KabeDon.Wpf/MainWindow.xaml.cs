@@ -28,12 +28,6 @@ namespace KabeDon.Wpf
         }
 
         private AreaInfo[] _areaSettings;
-
-        private Rect ExcellentKabeDon = new Rect(379, 301, 58, 66);
-        private Rect GoodKabeDon = new Rect(393, 210, 128, 181);
-        private Rect EasterEgg = new Rect(468, 405, 41, 53);
-        private Rect Hat = new Rect(200, 146, 176, 94);
-        private Rect Face = new Rect(203, 233, 153, 137);
         private Rect ForbiddenArea = new Rect(142, 413, 182, 547);
 
         private void CloudiaImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
