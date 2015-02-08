@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KabeDon.Wpf"
         mc:Ignorable="d"
-        Title="クラウディア(仮)" SizeToContent="WidthAndHeight">
+        Title="クラウディア(仮)" Height="800" Width="440">
     <Grid>
         <MediaElement x:Name="ExcellentSound" Source="Media/taiko03.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="GoodSound" Source="Media/drum02.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="EasterEggSound" Source="Media/bell03.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="HatSound" Source="Media/voice_25hi.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="FaceSound" Source="Media/37ah.wav" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
-        <Image x:Name="CloudiaImage" Source="Images/クラウディアdefault.png" Width="540" Height="960" />
+        <Viewbox>
+            <Image x:Name="CloudiaImage" Source="Images/クラウディアdefault.png" Width="540" Height="960" />
+        </Viewbox>
     </Grid>
 </Window>

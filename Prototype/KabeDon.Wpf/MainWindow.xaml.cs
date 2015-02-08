@@ -17,11 +17,11 @@ namespace KabeDon.Wpf
 
             _areaSettings = new[]
             {
-                new AreaInfo(new Rect(379, 301, 58, 66), ExcellentSound),
-                new AreaInfo(new Rect(393, 210, 128, 181), GoodSound),
-                new AreaInfo(new Rect(468, 405, 41, 53), EasterEggSound),
-                new AreaInfo(new Rect(200, 146, 176, 94), HatSound),
-                new AreaInfo(new Rect(203, 233, 153, 137), FaceSound),
+                new AreaInfo(new Rect(758, 602, 116, 132), ExcellentSound),
+                new AreaInfo(new Rect(786, 420, 256, 362), GoodSound),
+                new AreaInfo(new Rect(936, 810,  82, 106), EasterEggSound),
+                new AreaInfo(new Rect(400, 292, 352, 188), HatSound),
+                new AreaInfo(new Rect(406, 466, 306, 274), FaceSound),
             };
 
             CloudiaImage.MouseDown += CloudiaImage_MouseDown;
@@ -33,6 +33,8 @@ namespace KabeDon.Wpf
         private void CloudiaImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var position = e.MouseDevice.GetPosition(CloudiaImage);
+            position.X *= 1080 / CloudiaImage.ActualWidth;
+            position.Y *= 1920 / CloudiaImage.ActualHeight;
 
             if (ForbiddenArea.Contains(position))
             {
