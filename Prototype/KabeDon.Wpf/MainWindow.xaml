@@ -12,6 +12,8 @@
         <MediaElement x:Name="EasterEggSound" Source="Media/bell03.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="HatSound" Source="Media/voice_25hi.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="FaceSound" Source="Media/37ah.wav" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
+        <MediaElement x:Name="StartSound" Source="Media/30start.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
+        <MediaElement x:Name="FinishSound" Source="Media/16finiiish.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <Viewbox>
             <Grid x:Name="Cloudia" Background="White">
                 <Image x:Name="Surprised" Source="Images/Visual Studioアプリ素材クラウディア 驚き.png" Width="540" Height="960" Visibility="Hidden" />

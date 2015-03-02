@@ -101,6 +101,12 @@
     <Resource Include="Images\Visual Studioアプリ素材クラウディア 照れ.png" />
     <Resource Include="Images\Visual Studioアプリ素材クラウディア 通常.png" />
     <Resource Include="Images\Visual Studioアプリ素材クラウディア 驚き.png" />
+    <Content Include="Media\16finiiish.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\30start.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Media\37ah.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

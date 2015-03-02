@@ -32,9 +32,11 @@ namespace KabeDon.Wpf
         {
             StartButton.Visibility = Visibility.Hidden;
             Cloudia.MouseDown += CloudiaImage_MouseDown;
+            StartSound.Play();
 
             await Task.Delay(TimeSpan.FromSeconds(5));
 
+            FinishSound.Play();
             Cloudia.MouseDown -= CloudiaImage_MouseDown;
 
             MessageBox.Show($"終了。あなたのスコアは {_score} 点です");
