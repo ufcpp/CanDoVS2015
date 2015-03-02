@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace KabeDon.Wpf
 {
@@ -31,6 +28,8 @@ namespace KabeDon.Wpf
             Cloudia.MouseDown += CloudiaImage_MouseDown;
         }
 
+        private int _score;
+
         private AreaInfo[] _areaSettings;
         private Rect ForbiddenArea = new Rect(142, 413, 182, 547);
 
@@ -53,6 +52,9 @@ namespace KabeDon.Wpf
                     System.Diagnostics.Debug.WriteLine($"プレイ { position.X}, { position.Y}");
                     area.Sound.Position = TimeSpan.Zero;
                     area.Sound.Play();
+
+                    _score += area.Score;
+                    ScoreText.Text = _score.ToString();
 
                     if (area.Image != null)
                     {

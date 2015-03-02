@@ -18,6 +18,7 @@
                 <Image x:Name="Angry" Source="Images/Visual Studioアプリ素材クラウディア 怒り.png" Width="540" Height="960" Visibility="Hidden" />
                 <Image x:Name="Embarrassed" Source="Images/Visual Studioアプリ素材クラウディア 照れ.png" Width="540" Height="960" Visibility="Hidden" />
                 <Image x:Name="Normal" Source="Images/Visual Studioアプリ素材クラウディア 通常.png" Width="540" Height="960" />
+                <TextBlock x:Name="ScoreText" HorizontalAlignment="Right" FontSize="50" />
             </Grid>
         </Viewbox>
     </Grid>

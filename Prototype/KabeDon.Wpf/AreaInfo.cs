@@ -15,7 +15,7 @@ namespace KabeDon.Wpf
             Rect = rect;
             Sound = sound;
             Image = image;
-            Score = Score;
+            Score = score;
         }
     }
 }
