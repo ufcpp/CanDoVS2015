@@ -97,6 +97,10 @@
     <Resource Include="Images\クラウディアdefault.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Visual Studioアプリ素材クラウディア 怒り.png" />
+    <Resource Include="Images\Visual Studioアプリ素材クラウディア 照れ.png" />
+    <Resource Include="Images\Visual Studioアプリ素材クラウディア 通常.png" />
+    <Resource Include="Images\Visual Studioアプリ素材クラウディア 驚き.png" />
     <Content Include="Media\37ah.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

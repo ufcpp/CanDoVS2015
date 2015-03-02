@@ -7,11 +7,15 @@ namespace KabeDon.Wpf
     {
         public MediaElement Sound { get; }
         public Rect Rect { get; }
+        public Image Image { get; }
+        public int Score { get; }
 
-        public AreaInfo(Rect rect, MediaElement sound)
+        public AreaInfo(Rect rect, MediaElement sound, Image image, int score)
         {
-            this.Rect = rect;
-            this.Sound = sound;
+            Rect = rect;
+            Sound = sound;
+            Image = image;
+            Score = Score;
         }
     }
 }

@@ -13,7 +13,12 @@
         <MediaElement x:Name="HatSound" Source="Media/voice_25hi.mp3" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <MediaElement x:Name="FaceSound" Source="Media/37ah.wav" LoadedBehavior="Manual" UnloadedBehavior="Stop" />
         <Viewbox>
-            <Image x:Name="CloudiaImage" Source="Images/クラウディアdefault.png" Width="540" Height="960" />
+            <Grid x:Name="Cloudia" Background="White">
+                <Image x:Name="Surprised" Source="Images/Visual Studioアプリ素材クラウディア 驚き.png" Width="540" Height="960" Visibility="Hidden" />
+                <Image x:Name="Angry" Source="Images/Visual Studioアプリ素材クラウディア 怒り.png" Width="540" Height="960" Visibility="Hidden" />
+                <Image x:Name="Embarrassed" Source="Images/Visual Studioアプリ素材クラウディア 照れ.png" Width="540" Height="960" Visibility="Hidden" />
+                <Image x:Name="Normal" Source="Images/Visual Studioアプリ素材クラウディア 通常.png" Width="540" Height="960" />
+            </Grid>
         </Viewbox>
     </Grid>
 </Window>
