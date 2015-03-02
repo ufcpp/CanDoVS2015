@@ -19,6 +19,7 @@
                 <Image x:Name="Embarrassed" Source="Images/Visual Studioアプリ素材クラウディア 照れ.png" Width="540" Height="960" Visibility="Hidden" />
                 <Image x:Name="Normal" Source="Images/Visual Studioアプリ素材クラウディア 通常.png" Width="540" Height="960" />
                 <TextBlock x:Name="ScoreText" HorizontalAlignment="Right" FontSize="50" />
+                <Button x:Name="StartButton" Content="開始" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" />
             </Grid>
         </Viewbox>
     </Grid>

@@ -25,7 +25,22 @@ namespace KabeDon.Wpf
                 new AreaInfo(new Rect(0, 0, 1080, 1920), GoodSound, null, 0),
             };
 
+            StartButton.Click += StartButton_Click;
+        }
+
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartButton.Visibility = Visibility.Hidden;
             Cloudia.MouseDown += CloudiaImage_MouseDown;
+
+            await Task.Delay(TimeSpan.FromSeconds(5));
+
+            Cloudia.MouseDown -= CloudiaImage_MouseDown;
+
+            MessageBox.Show($"終了。あなたのスコアは {_score} 点です");
+            _score = 0;
+
+            StartButton.Visibility = Visibility.Visible;
         }
 
         private int _score;
