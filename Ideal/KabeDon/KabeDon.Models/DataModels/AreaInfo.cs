@@ -1,4 +1,6 @@
-﻿namespace KabeDon.DataModels
+﻿using System;
+
+namespace KabeDon.DataModels
 {
     /// <summary>
     /// 特定の矩形領域をタップしたときの挙動に関する情報。
@@ -37,5 +39,12 @@
         /// null なら遷移なし(自身の ID 指定だと経過時間はリセット、null だと経過続行)。
         /// </summary>
         public Probability.Table<string> Transition { get; set; }
+
+        /// <summary>
+        /// この領域内に点 <paramref name="p"/> が含まれるかどうか。
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public bool Contains(Point p) => Rect.Contains(p);
     }
 }

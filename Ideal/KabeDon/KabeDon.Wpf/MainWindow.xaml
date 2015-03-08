@@ -4,19 +4,44 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:KabeDon.Wpf"
+    xmlns:local="clr-namespace:KabeDon"
     mc:Ignorable="d"
     Title="クラウディア(仮)" Height="800" SizeToContent="Width">
+    <Window.Resources>
+        <local:VisibleIf x:Key="VisibleIfFalse" IfTrue="False" />
+    </Window.Resources>
     <Grid>
         <Viewbox>
             <Grid x:Name="Cloudia" Background="White">
                 <Viewbox>
                     <Grid>
-                        <Image x:Name="CloudiaImage" Width="1080" Height="1920" />
-                        <TextBlock x:Name="ScoreText" HorizontalAlignment="Right" FontSize="50" />
+                        <Image Source="{Binding Image}" Width="1080" Height="1920" />
+                        
+                        <StackPanel HorizontalAlignment="Right">
+                            <StackPanel.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="FontSize" Value="50"/>
+                                    <Setter Property="Foreground" Value="#FFFF7B7B"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="スコア: " />
+                                <TextBlock Text="{Binding Score}" FontSize="50" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="残り時間: "/>
+                                <TextBlock Text="{Binding RemainderTime, StringFormat=mm\\:ss}" />
+                            </StackPanel>
+
+                        </StackPanel>
                     </Grid>
                 </Viewbox>
-                <Button x:Name="StartButton" Content="開始" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" />
+                <Button
+                    Content="開始"
+                    Command="{Binding StartCommand}"
+                    Visibility="{Binding IsRunning, Converter={StaticResource VisibleIfFalse}}"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" />
             </Grid>
         </Viewbox>
     </Grid>

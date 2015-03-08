@@ -1,4 +1,6 @@
-﻿namespace KabeDon.DataModels
+﻿using System;
+
+namespace KabeDon.DataModels
 {
     public class Rect
     {
@@ -35,6 +37,16 @@
             Y1 = y1;
             X2 = x2;
             Y2 = y2;
+        }
+
+        /// <summary>
+        /// この矩形内に点 <paramref name="p"/> が含まれるかどうか。
+        /// </summary>
+        /// <param name="p">点。</param>
+        /// <returns>含むとき true。</returns>
+        public bool Contains(Point p)
+        {
+            return X1 <= p.X && p.X <= X2 && Y1 <= p.Y && p.Y <= Y2;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace KabeDon.DataModels
 {
@@ -43,5 +44,12 @@ namespace KabeDon.DataModels
         /// 座標がかぶっている領域があった場合、先頭側ほど優先。
         /// </summary>
         public List<AreaInfo> Area { get; } = new List<AreaInfo>();
+
+        /// <summary>
+        /// 点 <paramref name="p"/> を含む最初の領域を探す。
+        /// </summary>
+        /// <param name="p">探したい点。</param>
+        /// <returns>1つもなければ null。</returns>
+        public AreaInfo GetArea(Point p) => Area.FirstOrDefault(a => a.Contains(p));
     }
 }

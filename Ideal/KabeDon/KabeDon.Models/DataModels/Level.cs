@@ -31,5 +31,11 @@ namespace KabeDon.DataModels
         /// 終了音声のファイル名。
         /// </summary>
         public string FinishSound { get; set; }
+
+        /// <summary>
+        /// 初期ステートを取得。
+        /// </summary>
+        /// <returns></returns>
+        public State GetInitialState() => States.Find(x => x.Id == InitialState);
     }
 }
