@@ -46,10 +46,14 @@ namespace KabeDon.Wpf
 
             try
             {
-                await vm.Engine.ExecuteAsync(_endOfGame.Token);
+                while (!_endOfGame.IsCancellationRequested)
+                {
+                    await vm.Engine.ExecuteAsync(_endOfGame.Token);
+                }
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
         }
 

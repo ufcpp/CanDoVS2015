@@ -25,7 +25,7 @@ namespace TrialConsole
 ",
                     Image = "normal.png",
                     Sound = "drum02.mp3",
-                    TimeFrame = TimeFrame.Exponential(3),
+                    TimeFrame = TimeFrame.Exponential(5),
                     Transition = new P.Table<string>
                     {
                         Items =
@@ -156,7 +156,7 @@ namespace TrialConsole
 ",
                     Image = "surprise.png",
                     Sound = "drum02.mp3",
-                    TimeFrame = TimeFrame.Exponential(3),
+                    TimeFrame = TimeFrame.Exponential(8),
                     Transition = new P.Table<string>
                     {
                         Items =
@@ -404,7 +404,7 @@ namespace TrialConsole
 ",
                     Image = "angry.png",
                     Sound = "drum02.mp3",
-                    TimeFrame = TimeFrame.Exponential(30),
+                    TimeFrame = TimeFrame.Exponential(10),
                     Transition = new P.Table<string>
                     {
                         Items =

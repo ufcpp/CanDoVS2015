@@ -121,10 +121,22 @@ namespace KabeDon.Engine
         {
             var state = _level.GetInitialState();
             var random = new Random();
+            var timeout = Task.Delay(state.TimeFrame.Next(random));
 
             while (!endOfGame.IsCancellationRequested)
             {
-                var tapped = await Channel.SendAsync<D.Point>(new M.AwaitTap());
+                var tap = Channel.SendAsync<D.Point>(new M.AwaitTap());
+
+                await Task.WhenAny(tap, timeout);
+
+                if (timeout.IsCompleted)
+                {
+                    System.Diagnostics.Debug.WriteLine($"timeout");
+                    Transit(state.Transition, random, ref state, ref timeout);
+                    continue;
+                }
+
+                var tapped = await tap;
                 var area = state.GetArea(tapped);
 
                 if (area == null)
@@ -138,18 +150,24 @@ namespace KabeDon.Engine
                     await Channel.SendAsync(new M.PlaySound(area.Sound));
                     Score += area.Score;
 
-                    var next = area.Transition.GetOccurrence(random);
-
-                    if (next != null)
-                    {
-                        state = _level.GetState(next);
-                        Image = state.Image;
-                    }
+                    Transit(area.Transition, random, ref state, ref timeout);
 
                     //todo: クールタイムの間、何か表示だしたい
                     await Task.Delay(area.CoolTime.Next(random));
                 }
             }
+        }
+
+        private void Transit(D.Probability.Table<string> transition, Random random, ref D.State state, ref Task timeout)
+        {
+            var next = transition.GetOccurrence(random);
+
+            if (next == null) return;
+
+            state = _level.GetState(next);
+            System.Diagnostics.Debug.WriteLine($"state changed to {state}");
+            Image = state.Image;
+            timeout = Task.Delay(state.TimeFrame.Next(random));
         }
     }
 }
