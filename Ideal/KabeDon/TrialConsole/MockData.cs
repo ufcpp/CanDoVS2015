@@ -92,11 +92,27 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
+                            Rect = Rect.LeftTop(350, 970, 450, 270),
+                            Score = 0,
+                            Description = "胸",
+                            CoolTime = TimeFrame.Constant(1),
+                            Sound = "37ah.wav",
+                            Transition = new P.Table<string>
+                            {
+                                Items =
+                                {
+                                    { 5, null },
+                                    { 10, "angry" },
+                                },
+                            },
+                        },
+                        new AreaInfo
+                        {
                             Rect = Rect.LeftTop(260, 760, 620, 1160),
                             Score = 0,
                             Description = "胴",
                             CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
+                            Sound = "37ah.wav",
                             Transition = new P.Table<string>
                             {
                                 Items =
@@ -110,27 +126,11 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
-                            Rect = Rect.LeftTop(350, 970, 450, 270),
-                            Score = 0,
-                            Description = "胸",
-                            CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
-                            Transition = new P.Table<string>
-                            {
-                                Items =
-                                {
-                                    { 5, null },
-                                    { 10, "angry" },
-                                },
-                            },
-                        },
-                        new AreaInfo
-                        {
-                            Rect = Rect.LeftTop(280, 420, 520, 340),
+                            Rect = Rect.LeftTop(130, 210, 820, 920),
                             Score = 0,
                             Description = "壁ドン(広)",
                             CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
+                            Sound = "drum02.mp3",
                             Transition = new P.Table<string>
                             {
                                 Items =
@@ -154,7 +154,7 @@ namespace TrialConsole
 ボディタッチ: 0点。普通遷移率高め。胸だけは怒る。
 放置で怒り遷移多め。期待させといて何もしないとかちょっと。
 ",
-                    Image = "normal.png",
+                    Image = "surprise.png",
                     Sound = "drum02.mp3",
                     TimeFrame = TimeFrame.Exponential(3),
                     Transition = new P.Table<string>
@@ -220,28 +220,11 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
-                            Rect = Rect.LeftTop(260, 760, 620, 1160),
-                            Score = 0,
-                            Description = "胴",
-                            CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
-                            Transition = new P.Table<string>
-                            {
-                                Items =
-                                {
-                                    { 3, null },
-                                    { 1, "embarrassed" },
-                                    { 4, "normal" },
-                                },
-                            },
-                        },
-                        new AreaInfo
-                        {
                             Rect = Rect.LeftTop(350, 970, 450, 270),
                             Score = 0,
                             Description = "胸",
                             CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
+                            Sound = "37ah.wav",
                             Transition = new P.Table<string>
                             {
                                 Items =
@@ -254,11 +237,28 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
-                            Rect = Rect.LeftTop(280, 420, 520, 340),
+                            Rect = Rect.LeftTop(260, 760, 620, 1160),
+                            Score = 0,
+                            Description = "胴",
+                            CoolTime = TimeFrame.Constant(1),
+                            Sound = "37ah.wav",
+                            Transition = new P.Table<string>
+                            {
+                                Items =
+                                {
+                                    { 3, null },
+                                    { 1, "embarrassed" },
+                                    { 4, "normal" },
+                                },
+                            },
+                        },
+                        new AreaInfo
+                        {
+                            Rect = Rect.LeftTop(130, 210, 820, 920),
                             Score = 0,
                             Description = "壁ドン(広)",
                             CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
+                            Sound = "drum02.mp3",
                             Transition = new P.Table<string>
                             {
                                 Items =
@@ -274,14 +274,14 @@ namespace TrialConsole
 
                 new State
                 {
-                    Id = "normal",
+                    Id = "embarrassed",
                     Description = @"照れ状態。チョロインなので何やっても得点。
 壁ドン領域: 4点。経過時間リセット率高め(継続して照れ状態維持できる)。
 顔、頭: 7点。得点は高いんだけど、経過時間リセットされない。
 離れた場所: 1点。もはやこれでは何も起きない。
 ボディタッチ: 3点。驚き遷移率高め。
 ",
-                    Image = "normal.png",
+                    Image = "embarrassed.png",
                     Sound = "drum02.mp3",
                     TimeFrame = TimeFrame.Exponential(5),
                     Transition = new P.Table<string>
@@ -342,28 +342,11 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
-                            Rect = Rect.LeftTop(260, 760, 620, 1160),
-                            Score = 3,
-                            Description = "胴",
-                            CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
-                            Transition = new P.Table<string>
-                            {
-                                Items =
-                                {
-                                    { 2, null },
-                                    { 4, "surprise" },
-                                    { 1, "normal" },
-                                },
-                            },
-                        },
-                        new AreaInfo
-                        {
                             Rect = Rect.LeftTop(350, 970, 450, 270),
                             Score = 3,
                             Description = "胸",
                             CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
+                            Sound = "37ah.wav",
                             Transition = new P.Table<string>
                             {
                                 Items =
@@ -376,11 +359,28 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
-                            Rect = Rect.LeftTop(280, 420, 520, 340),
+                            Rect = Rect.LeftTop(260, 760, 620, 1160),
+                            Score = 3,
+                            Description = "胴",
+                            CoolTime = TimeFrame.Constant(1),
+                            Sound = "37ah.wav",
+                            Transition = new P.Table<string>
+                            {
+                                Items =
+                                {
+                                    { 2, null },
+                                    { 4, "surprise" },
+                                    { 1, "normal" },
+                                },
+                            },
+                        },
+                        new AreaInfo
+                        {
+                            Rect = Rect.LeftTop(130, 210, 820, 920),
                             Score = 1,
                             Description = "壁ドン(広)",
                             CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
+                            Sound = "drum02.mp3",
                             Transition = new P.Table<string>
                             {
                                 Items =
@@ -402,7 +402,7 @@ namespace TrialConsole
 胴: -1点。
 胸: -1点。レアボイスの「往生際が悪いわよ」。100% 怒り継続。
 ",
-                    Image = "normal.png",
+                    Image = "angry.png",
                     Sound = "drum02.mp3",
                     TimeFrame = TimeFrame.Exponential(30),
                     Transition = new P.Table<string>
@@ -465,21 +465,6 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
-                            Rect = Rect.LeftTop(260, 760, 620, 1160),
-                            Score = -1,
-                            Description = "胴",
-                            CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
-                            Transition = new P.Table<string>
-                            {
-                                Items =
-                                {
-                                    { 1, null },
-                                },
-                            },
-                        },
-                        new AreaInfo
-                        {
                             Rect = Rect.LeftTop(350, 970, 450, 270),
                             Score = -1,
                             Description = "胸",
@@ -495,11 +480,26 @@ namespace TrialConsole
                         },
                         new AreaInfo
                         {
-                            Rect = Rect.LeftTop(280, 420, 520, 340),
+                            Rect = Rect.LeftTop(260, 760, 620, 1160),
+                            Score = -1,
+                            Description = "胴",
+                            CoolTime = TimeFrame.Constant(1),
+                            Sound = "37ah.wav",
+                            Transition = new P.Table<string>
+                            {
+                                Items =
+                                {
+                                    { 1, null },
+                                },
+                            },
+                        },
+                        new AreaInfo
+                        {
+                            Rect = Rect.LeftTop(130, 210, 820, 920),
                             Score = 0,
                             Description = "壁ドン(広)",
                             CoolTime = TimeFrame.Constant(1),
-                            Sound = "taiko03.mp3",
+                            Sound = "drum02.mp3",
                             Transition = new P.Table<string>
                             {
                                 Items =

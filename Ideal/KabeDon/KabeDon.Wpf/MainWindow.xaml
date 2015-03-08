@@ -27,11 +27,11 @@
                             
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="スコア: " />
-                                <TextBlock Text="{Binding Score}" FontSize="50" />
+                                <TextBlock Text="{Binding Engine.Score}" FontSize="50" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="残り時間: "/>
-                                <TextBlock Text="{Binding RemainderTime, StringFormat=mm\\:ss}" />
+                                <TextBlock Text="{Binding Engine.RemainderTime, StringFormat=mm\\:ss}" />
                             </StackPanel>
 
                         </StackPanel>
@@ -40,7 +40,7 @@
                 <Button
                     Content="開始"
                     Command="{Binding StartCommand}"
-                    Visibility="{Binding IsRunning, Converter={StaticResource VisibleIfFalse}}"
+                    Visibility="{Binding Engine.IsRunning, Converter={StaticResource VisibleIfFalse}}"
                     HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" />
             </Grid>
         </Viewbox>

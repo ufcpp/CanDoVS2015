@@ -37,5 +37,11 @@ namespace KabeDon.DataModels
         /// </summary>
         /// <returns></returns>
         public State GetInitialState() => States.Find(x => x.Id == InitialState);
+
+        /// <summary>
+        /// ID を指定してステートを取得。
+        /// </summary>
+        /// <returns></returns>
+        public State GetState(string id) => States.Find(x => x.Id == id);
     }
 }

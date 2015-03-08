@@ -58,5 +58,7 @@ namespace KabeDon.DataModels
         /// <param name="height">高さ。</param>
         /// <returns></returns>
         public static Rect LeftTop(int left, int top, int width, int height) => new Rect(left, top, left + width, top + height);
+
+        public override string ToString() => $"[({X1}, {Y1}) - ({X2}, {Y2})";
     }
 }

@@ -2,21 +2,23 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Reactive.Linq;
 
 namespace KabeDon.Engine
 {
-    using System.Reactive.Linq;
     using M = Messages;
     using D = DataModels;
 
+    /// <summary>
+    /// ゲームの実行エンジン。
+    /// </summary>
     public class KabeDonEngine : BindableBase
     {
-        public KabeDonEngine()
+        private readonly D.Level _level;
+
+        public KabeDonEngine(D.Level lavel)
         {
-            StartCommand = _channel.SetCommand<M.Message, M.AwaitStart>();
-            TapCommand = _channel.SetCommand<M.Message, M.AwaitTap, D.Point>();
-            SoundRequested = _channel.AsObservable<M.Message, M.PlaySound>().Select(x => x.Name);
+            _level = lavel;
         }
 
         /// <summary>
@@ -60,50 +62,33 @@ namespace KabeDon.Engine
         private bool _running;
 
         // Channel 生で返すか、コマンド介すべきか悩む。
-        private readonly Channel<M.Message> _channel = new Channel<M.Message>();
-
-        /// <summary>
-        /// 開始待ち。
-        /// </summary>
-        public ICommand StartCommand { get; }
-
-        /// <summary>
-        /// タップ待ち。
-        /// </summary>
-        public ICommand TapCommand { get; }
-
-        /// <summary>
-        /// 音声再生要求イベント。
-        /// </summary>
-        public IObservable<string> SoundRequested { get; }
+        public Channel<M.Message> Channel { get; } = new Channel<M.Message>();
 
         /// <summary>
         /// 実行。
         /// </summary>
-        /// <param name="manager"></param>
         /// <returns></returns>
-        public async Task ExecuteAsync(Packages.PackageManager manager, CancellationToken ct)
+        public async Task ExecuteAsync(CancellationToken ct)
         {
             var cts = new CancellationTokenSource();
             ct.Register(() => cts.Cancel());
 
-            var state = manager.Level.GetInitialState();
-            var image = manager.GetImage(state.Image);
-            Image = image;
+            var state = _level.GetInitialState();
+            Image = state.Image;
 
-            await _channel.SendAsync(M.AwaitStart.Instance);
+            await Channel.SendAsync(M.AwaitStart.Instance);
 
             IsRunning = true;
-            await _channel.SendAsync(new M.PlaySound(manager.Level.StartSound));
+            await Channel.SendAsync(new M.PlaySound(_level.StartSound));
 
             try
             {
                 await Task.WhenAny(
-                    CountDown(manager, ct).ContinueWith(_ => cts.Cancel()),
-                    ExecuteGame(manager, cts.Token)
+                    CountDown(ct).ContinueWith(_ => cts.Cancel()),
+                    ExecuteGame(cts.Token)
                     );
 
-                await _channel.SendAsync(new M.PlaySound(manager.Level.FinishSound));
+                await Channel.SendAsync(new M.PlaySound(_level.FinishSound));
             }
             finally
             {
@@ -114,11 +99,10 @@ namespace KabeDon.Engine
         /// <summary>
         /// 残り時間カウント。
         /// </summary>
-        /// <param name="manager"></param>
         /// <returns></returns>
-        private async Task CountDown(Packages.PackageManager manager, CancellationToken ct)
+        private async Task CountDown(CancellationToken ct)
         {
-            var timeLimit = DateTime.Now.AddSeconds(manager.Level.TimeLimitSeconds);
+            var timeLimit = DateTime.Now.AddSeconds(_level.TimeLimitSeconds);
 
             TimeSpan remainder;
             while (!ct.IsCancellationRequested && (remainder = timeLimit - DateTime.Now) > TimeSpan.Zero)
@@ -131,29 +115,38 @@ namespace KabeDon.Engine
         /// <summary>
         /// ゲーム本体。
         /// </summary>
-        /// <param name="manager"></param>
         /// <param name="endOfGame"></param>
         /// <returns></returns>
-        private async Task ExecuteGame(Packages.PackageManager manager, CancellationToken endOfGame)
+        private async Task ExecuteGame(CancellationToken endOfGame)
         {
-            var state = manager.Level.GetInitialState();
-            var random = new System.Random();
+            var state = _level.GetInitialState();
+            var random = new Random();
 
-            while (true)
+            while (!endOfGame.IsCancellationRequested)
             {
-                var tapped = await _channel.SendAsync<D.Point>(new M.AwaitTap());
+                var tapped = await Channel.SendAsync<D.Point>(new M.AwaitTap());
                 var area = state.GetArea(tapped);
 
                 if (area == null)
                 {
-                    await _channel.SendAsync(new M.PlaySound(state.Sound));
+                    await Channel.SendAsync(new M.PlaySound(state.Sound));
                 }
                 else
                 {
-                    await _channel.SendAsync(new M.PlaySound(area.Sound));
+                    System.Diagnostics.Debug.WriteLine($"tapped: {tapped}, area: {area.Rect}, {area.Description}");
+
+                    await Channel.SendAsync(new M.PlaySound(area.Sound));
                     Score += area.Score;
 
-                    //todo: クールタイムの間何か表示だしたい
+                    var next = area.Transition.GetOccurrence(random);
+
+                    if (next != null)
+                    {
+                        state = _level.GetState(next);
+                        Image = state.Image;
+                    }
+
+                    //todo: クールタイムの間、何か表示だしたい
                     await Task.Delay(area.CoolTime.Next(random));
                 }
             }

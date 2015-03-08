@@ -51,6 +51,7 @@
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Common\Channel.cs" />
     <Compile Include="Engine\KabeDonEngine.cs" />
+    <Compile Include="Engine\KabeDonViewModel.cs" />
     <Compile Include="Engine\Messages\AwaitTap.cs" />
     <Compile Include="Engine\Messages\Message.cs" />
     <Compile Include="Engine\Messages\PlaySound.cs" />

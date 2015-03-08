@@ -28,11 +28,11 @@ namespace KabeDon.Wpf
             var path = Path.Combine(desktop, "temp/KabeDonSample");
             await m.LoadFrom(new FileStorage(path));
 
-            var engine = new KabeDonEngine();
-            DataContext = engine;
+            var vm = new KabeDonViewModel(m);
+            DataContext = vm;
 
             //↓ behavior 化したい
-            engine.SoundRequested.SubscribeOn(SynchronizationContext.Current).Select(name => m.GetSound(name)).Subscribe(PlaySound);
+            vm.SoundRequested.SubscribeOn(SynchronizationContext.Current).Subscribe(PlaySound);
             Cloudia.MouseDown += (_, me) =>
             {
                 var position = me.GetPosition(Cloudia);
@@ -40,11 +40,17 @@ namespace KabeDon.Wpf
                 position.Y *= 1920 / Cloudia.ActualHeight;
 
                 var p = new DataModels.Point((int)position.X, (int)position.Y);
-                engine.TapCommand.Execute(p);
+                vm.TapCommand.Execute(p);
             };
             //↑ behavior 化したい
 
-            await engine.ExecuteAsync(m, _endOfGame.Token);
+            try
+            {
+                await vm.Engine.ExecuteAsync(_endOfGame.Token);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void PlaySound(string path)
