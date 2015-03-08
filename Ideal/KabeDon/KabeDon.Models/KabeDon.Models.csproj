@@ -39,6 +39,7 @@
     <Compile Include="DataModels\Level.cs" />
     <Compile Include="DataModels\Probability\Item.cs" />
     <Compile Include="DataModels\Probability\Table.cs" />
+    <Compile Include="DataModels\Rect.cs" />
     <Compile Include="DataModels\State.cs" />
     <Compile Include="DataModels\TimeFrame.cs" />
     <Compile Include="Packages\IStorage.cs" />
@@ -53,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Engine\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

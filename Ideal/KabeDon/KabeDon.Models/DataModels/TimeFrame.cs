@@ -29,5 +29,19 @@ namespace KabeDon.DataModels
             var s = -AverageSeconds * Math.Log(1 - random.NextDouble());
             return TimeSpan.FromSeconds(s);
         }
+
+        /// <summary>
+        /// 一定時間。
+        /// </summary>
+        /// <param name="seconds">秒数。</param>
+        /// <returns></returns>
+        public static TimeFrame Constant(int seconds) => new TimeFrame { AverageSeconds = seconds, Distribution = Distribution.Constant };
+
+        /// <summary>
+        /// 指数分布乱数に沿った時間。
+        /// </summary>
+        /// <param name="seconds">平均秒数。</param>
+        /// <returns></returns>
+        public static TimeFrame Exponential(int seconds) => new TimeFrame { AverageSeconds = seconds, Distribution = Distribution.Exponential };
     }
 }

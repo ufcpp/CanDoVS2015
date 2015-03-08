@@ -8,10 +8,9 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
 
 namespace KabeDon.Wpf
 {
@@ -23,6 +22,19 @@ namespace KabeDon.Wpf
         public MainWindow()
         {
             InitializeComponent();
+
+            Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            var m = new Packages.PackageManager();
+
+            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var path = Path.Combine(desktop, "temp/KabeDonSample");
+            await m.LoadFrom(new FileStorage(path));
+
+
         }
     }
 }

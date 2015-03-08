@@ -1,25 +1,17 @@
 ﻿using KabeDon.Packages;
-using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace TrialConsole
+namespace KabeDon
 {
     /// <summary>
-    /// 決め打ちで固定パスにデータを置く。
-    /// デスクトップ上の temp\KabeDonSample フォルダー。
+    /// <see cref="IStorage"/> の <see cref="File"/> 実装。
     /// </summary>
-    class Storage : IStorage
+    class FileStorage : IStorage
     {
         private string _path;
 
-        public Storage()
-        {
-            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            _path = Path.Combine(desktop, "temp/KabeDonSample");
-        }
-
-        private Storage(string path)
+        public FileStorage(string path)
         {
             _path = path;
         }
@@ -33,7 +25,7 @@ namespace TrialConsole
         public Task<IStorage> GetSubfolderAsync(string folder)
         {
             var sub = Path.Combine(_path, folder);
-            return Task.FromResult<IStorage>(new Storage(sub));
+            return Task.FromResult<IStorage>(new FileStorage(sub));
         }
 
         public Task<Stream> OpenReadAsync(string file)
