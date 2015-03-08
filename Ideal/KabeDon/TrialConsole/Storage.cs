@@ -15,8 +15,7 @@ namespace TrialConsole
 
         public Storage()
         {
-            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            _path = Path.Combine(desktop, "temp/KabeDonSample");
+            _path = @"../../../KabeDon.Wpf/仮データ";
         }
 
         private Storage(string path)

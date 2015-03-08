@@ -24,8 +24,8 @@ namespace KabeDon.Wpf
         {
             var m = new Packages.PackageManager();
 
-            var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var path = Path.Combine(desktop, "temp/KabeDonSample");
+            var folder = Path.GetDirectoryName(typeof(MainWindow).Assembly.Location);
+            var path = Path.Combine(folder, "仮データ");
             await m.LoadFrom(new FileStorage(path));
 
             var vm = new KabeDonViewModel(m);

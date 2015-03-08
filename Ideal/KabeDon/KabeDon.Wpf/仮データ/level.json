@@ -1,0 +1,796 @@
+{
+  "TimeLimitSeconds": 120,
+  "States": [
+    {
+      "Id": "normal",
+      "Description": "普通。驚き遷移多め。\r\n壁ドン領域: 2点。遷移なし率高め。\r\n離れた場所: 0点。驚き遷移率高め。\r\nボディタッチ: 0点。怒り遷移率高め。\r\n離れた場所タッチで驚き(照れ遷移多め)にして、そこから照れにするのが定石。\r\nほっといて怒ることはない。\r\n",
+      "Image": "normal.png",
+      "Sound": "drum02.mp3",
+      "TimeFrame": {
+        "AverageSeconds": 5.0,
+        "Distribution": 1
+      },
+      "Transition": {
+        "Items": [
+          {
+            "Probability": 20,
+            "Occurrence": "normal"
+          },
+          {
+            "Probability": 1,
+            "Occurrence": "embarrassed"
+          },
+          {
+            "Probability": 5,
+            "Occurrence": "surprise"
+          }
+        ]
+      },
+      "Area": [
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": 0,
+          "Description": "頭",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 3,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "surprise"
+              },
+              {
+                "Probability": 5,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": 0,
+          "Description": "顔",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 3,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "surprise"
+              },
+              {
+                "Probability": 5,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 280,
+            "Y1": 420,
+            "X2": 800,
+            "Y2": 760
+          },
+          "Score": 2,
+          "Description": "壁ドン(良)",
+          "Sound": "taiko03.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 20,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "surprise"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 350,
+            "Y1": 970,
+            "X2": 800,
+            "Y2": 1240
+          },
+          "Score": 0,
+          "Description": "胸",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 5,
+                "Occurrence": null
+              },
+              {
+                "Probability": 10,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 260,
+            "Y1": 760,
+            "X2": 880,
+            "Y2": 1920
+          },
+          "Score": 0,
+          "Description": "胴",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 2,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "surprise"
+              },
+              {
+                "Probability": 4,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 130,
+            "Y1": 210,
+            "X2": 950,
+            "Y2": 1130
+          },
+          "Score": 0,
+          "Description": "壁ドン(広)",
+          "Sound": "drum02.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 10,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 5,
+                "Occurrence": "surprise"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Id": "surprise",
+      "Description": "驚き表情。照れ遷移多め。\r\n壁ドン領域: 3点。遷移なし率高め。\r\n離れた場所: 1点。照れ遷移率高め。\r\n頭: 0点。照れ遷移率かなり高め。怒らない。\r\nボディタッチ: 0点。普通遷移率高め。胸だけは怒る。\r\n放置で怒り遷移多め。期待させといて何もしないとかちょっと。\r\n",
+      "Image": "surprise.png",
+      "Sound": "drum02.mp3",
+      "TimeFrame": {
+        "AverageSeconds": 8.0,
+        "Distribution": 1
+      },
+      "Transition": {
+        "Items": [
+          {
+            "Probability": 1,
+            "Occurrence": "normal"
+          },
+          {
+            "Probability": 2,
+            "Occurrence": "angry"
+          }
+        ]
+      },
+      "Area": [
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": 0,
+          "Description": "頭",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 3,
+                "Occurrence": null
+              },
+              {
+                "Probability": 10,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "normal"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": 0,
+          "Description": "顔",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 3,
+                "Occurrence": null
+              },
+              {
+                "Probability": 3,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "normal"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 280,
+            "Y1": 420,
+            "X2": 800,
+            "Y2": 760
+          },
+          "Score": 3,
+          "Description": "壁ドン(良)",
+          "Sound": "taiko03.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 20,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "normal"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 350,
+            "Y1": 970,
+            "X2": 800,
+            "Y2": 1240
+          },
+          "Score": 0,
+          "Description": "胸",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 5,
+                "Occurrence": null
+              },
+              {
+                "Probability": 4,
+                "Occurrence": "normal"
+              },
+              {
+                "Probability": 2,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 260,
+            "Y1": 760,
+            "X2": 880,
+            "Y2": 1920
+          },
+          "Score": 0,
+          "Description": "胴",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 3,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 4,
+                "Occurrence": "normal"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 130,
+            "Y1": 210,
+            "X2": 950,
+            "Y2": 1130
+          },
+          "Score": 0,
+          "Description": "壁ドン(広)",
+          "Sound": "drum02.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 20,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              },
+              {
+                "Probability": 2,
+                "Occurrence": "normal"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Id": "embarrassed",
+      "Description": "照れ状態。チョロインなので何やっても得点。\r\n壁ドン領域: 4点。経過時間リセット率高め(継続して照れ状態維持できる)。\r\n顔、頭: 7点。得点は高いんだけど、経過時間リセットされない。\r\n離れた場所: 1点。もはやこれでは何も起きない。\r\nボディタッチ: 3点。驚き遷移率高め。\r\n",
+      "Image": "embarrassed.png",
+      "Sound": "drum02.mp3",
+      "TimeFrame": {
+        "AverageSeconds": 5.0,
+        "Distribution": 1
+      },
+      "Transition": {
+        "Items": [
+          {
+            "Probability": 2,
+            "Occurrence": "normal"
+          },
+          {
+            "Probability": 1,
+            "Occurrence": "surprise"
+          }
+        ]
+      },
+      "Area": [
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": 7,
+          "Description": "頭",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": null
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": 7,
+          "Description": "顔",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": null
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 280,
+            "Y1": 420,
+            "X2": 800,
+            "Y2": 760
+          },
+          "Score": 4,
+          "Description": "壁ドン(良)",
+          "Sound": "taiko03.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "embarrassed"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 350,
+            "Y1": 970,
+            "X2": 800,
+            "Y2": 1240
+          },
+          "Score": 3,
+          "Description": "胸",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 2,
+                "Occurrence": null
+              },
+              {
+                "Probability": 4,
+                "Occurrence": "surprise"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "normal"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 260,
+            "Y1": 760,
+            "X2": 880,
+            "Y2": 1920
+          },
+          "Score": 3,
+          "Description": "胴",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 2,
+                "Occurrence": null
+              },
+              {
+                "Probability": 4,
+                "Occurrence": "surprise"
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "normal"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 130,
+            "Y1": 210,
+            "X2": 950,
+            "Y2": 1130
+          },
+          "Score": 1,
+          "Description": "壁ドン(広)",
+          "Sound": "drum02.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Id": "angry",
+      "Description": "怒り状態。とにかく減点だらけ。\r\n壁ドン領域: 1点。\r\n離れた場所: 0点。\r\n顔、頭: -1点。たまに通常状態に復帰可能。怒り継続率高め。\r\n胴: -1点。\r\n胸: -1点。レアボイスの「往生際が悪いわよ」。100% 怒り継続。\r\n",
+      "Image": "angry.png",
+      "Sound": "drum02.mp3",
+      "TimeFrame": {
+        "AverageSeconds": 10.0,
+        "Distribution": 1
+      },
+      "Transition": {
+        "Items": [
+          {
+            "Probability": 1,
+            "Occurrence": "normal"
+          }
+        ]
+      },
+      "Area": [
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": -1,
+          "Description": "頭",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 3,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "normal"
+              },
+              {
+                "Probability": 5,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 370,
+            "Y1": 290,
+            "X2": 710,
+            "Y2": 800
+          },
+          "Score": -1,
+          "Description": "顔",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 3,
+                "Occurrence": null
+              },
+              {
+                "Probability": 1,
+                "Occurrence": "normal"
+              },
+              {
+                "Probability": 5,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 280,
+            "Y1": 420,
+            "X2": 800,
+            "Y2": 760
+          },
+          "Score": 1,
+          "Description": "壁ドン(良)",
+          "Sound": "taiko03.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": null
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 350,
+            "Y1": 970,
+            "X2": 800,
+            "Y2": 1240
+          },
+          "Score": -1,
+          "Description": "胸",
+          "Sound": "04oujougiwa.wav",
+          "CoolTime": {
+            "AverageSeconds": 2.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": "angry"
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 260,
+            "Y1": 760,
+            "X2": 880,
+            "Y2": 1920
+          },
+          "Score": -1,
+          "Description": "胴",
+          "Sound": "37ah.wav",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": null
+              }
+            ]
+          }
+        },
+        {
+          "Rect": {
+            "X1": 130,
+            "Y1": 210,
+            "X2": 950,
+            "Y2": 1130
+          },
+          "Score": 0,
+          "Description": "壁ドン(広)",
+          "Sound": "drum02.mp3",
+          "CoolTime": {
+            "AverageSeconds": 1.0,
+            "Distribution": 0
+          },
+          "Transition": {
+            "Items": [
+              {
+                "Probability": 1,
+                "Occurrence": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "InitialState": "normal",
+  "StartSound": "30start.mp3",
+  "FinishSound": "16finiiish.mp3"
+}
