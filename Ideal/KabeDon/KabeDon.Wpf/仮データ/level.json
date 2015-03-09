@@ -4,7 +4,7 @@
     {
       "Id": "normal",
       "Description": "普通。驚き遷移多め。\r\n壁ドン領域: 2点。遷移なし率高め。\r\n離れた場所: 0点。驚き遷移率高め。\r\nボディタッチ: 0点。怒り遷移率高め。\r\n離れた場所タッチで驚き(照れ遷移多め)にして、そこから照れにするのが定石。\r\nほっといて怒ることはない。\r\n",
-      "Image": "normal.png",
+      "Image": "normal.jpg",
       "Sound": "drum02.mp3",
       "TimeFrame": {
         "AverageSeconds": 5.0,
@@ -36,7 +36,7 @@
           },
           "Score": 0,
           "Description": "頭",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -71,7 +71,7 @@
           },
           "Score": 0,
           "Description": "顔",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -137,7 +137,7 @@
           },
           "Score": 0,
           "Description": "胸",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -164,7 +164,7 @@
           },
           "Score": 0,
           "Description": "胴",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -226,7 +226,7 @@
     {
       "Id": "surprise",
       "Description": "驚き表情。照れ遷移多め。\r\n壁ドン領域: 3点。遷移なし率高め。\r\n離れた場所: 1点。照れ遷移率高め。\r\n頭: 0点。照れ遷移率かなり高め。怒らない。\r\nボディタッチ: 0点。普通遷移率高め。胸だけは怒る。\r\n放置で怒り遷移多め。期待させといて何もしないとかちょっと。\r\n",
-      "Image": "surprise.png",
+      "Image": "surprise.jpg",
       "Sound": "drum02.mp3",
       "TimeFrame": {
         "AverageSeconds": 8.0,
@@ -254,7 +254,7 @@
           },
           "Score": 0,
           "Description": "頭",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -285,7 +285,7 @@
           },
           "Score": 0,
           "Description": "顔",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -347,7 +347,7 @@
           },
           "Score": 0,
           "Description": "胸",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -378,7 +378,7 @@
           },
           "Score": 0,
           "Description": "胴",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -436,7 +436,7 @@
     {
       "Id": "embarrassed",
       "Description": "照れ状態。チョロインなので何やっても得点。\r\n壁ドン領域: 4点。経過時間リセット率高め(継続して照れ状態維持できる)。\r\n顔、頭: 7点。得点は高いんだけど、経過時間リセットされない。\r\n離れた場所: 1点。もはやこれでは何も起きない。\r\nボディタッチ: 3点。驚き遷移率高め。\r\n",
-      "Image": "embarrassed.png",
+      "Image": "embarrassed.jpg",
       "Sound": "drum02.mp3",
       "TimeFrame": {
         "AverageSeconds": 5.0,
@@ -464,7 +464,7 @@
           },
           "Score": 7,
           "Description": "頭",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -487,7 +487,7 @@
           },
           "Score": 7,
           "Description": "顔",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -537,7 +537,7 @@
           },
           "Score": 3,
           "Description": "胸",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -568,7 +568,7 @@
           },
           "Score": 3,
           "Description": "胴",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -618,7 +618,7 @@
     {
       "Id": "angry",
       "Description": "怒り状態。とにかく減点だらけ。\r\n壁ドン領域: 1点。\r\n離れた場所: 0点。\r\n顔、頭: -1点。たまに通常状態に復帰可能。怒り継続率高め。\r\n胴: -1点。\r\n胸: -1点。レアボイスの「往生際が悪いわよ」。100% 怒り継続。\r\n",
-      "Image": "angry.png",
+      "Image": "angry.jpg",
       "Sound": "drum02.mp3",
       "TimeFrame": {
         "AverageSeconds": 10.0,
@@ -642,7 +642,7 @@
           },
           "Score": -1,
           "Description": "頭",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -673,7 +673,7 @@
           },
           "Score": -1,
           "Description": "顔",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0
@@ -727,7 +727,7 @@
           },
           "Score": -1,
           "Description": "胸",
-          "Sound": "04oujougiwa.wav",
+          "Sound": "04oujougiwa.mp3",
           "CoolTime": {
             "AverageSeconds": 2.0,
             "Distribution": 0
@@ -750,7 +750,7 @@
           },
           "Score": -1,
           "Description": "胴",
-          "Sound": "37ah.wav",
+          "Sound": "37ah.mp3",
           "CoolTime": {
             "AverageSeconds": 1.0,
             "Distribution": 0

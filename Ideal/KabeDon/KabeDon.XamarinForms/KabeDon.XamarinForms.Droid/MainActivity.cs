@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using System.IO;
 
 namespace KabeDon.XamarinForms.Droid
 {
@@ -14,6 +15,9 @@ namespace KabeDon.XamarinForms.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            //Android.OS.Environment.DataDirectory.
+            //FileSystemInfo
+            //System.Environment
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);

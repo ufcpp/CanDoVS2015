@@ -127,21 +127,20 @@
       <Name>KabeDon.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="仮データ\Images\angry.png">
+    <None Include="仮データ\Images\angry.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="仮データ\Images\embarrassed.png">
+    <None Include="仮データ\Images\embarrassed.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="仮データ\Images\normal.png">
+    <None Include="仮データ\Images\normal.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="仮データ\Images\surprise.png">
+    <None Include="仮データ\Images\surprise.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="仮データ\Sounds\04oujougiwa.wav">
+    <None Include="仮データ\Sounds\04oujougiwa.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="仮データ\Sounds\16finiiish.mp3">
@@ -150,7 +149,7 @@
     <None Include="仮データ\Sounds\30start.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="仮データ\Sounds\37ah.wav">
+    <None Include="仮データ\Sounds\37ah.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="仮データ\Sounds\bell03.mp3">
