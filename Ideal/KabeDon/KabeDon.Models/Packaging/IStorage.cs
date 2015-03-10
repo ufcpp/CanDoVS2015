@@ -10,6 +10,11 @@ namespace KabeDon.Packaging
     public interface IStorage
     {
         /// <summary>
+        /// このフォルダーの絶対パス。
+        /// </summary>
+        Task<string> GetPathAsync();
+
+        /// <summary>
         /// サブフォルダーを取得する。
         /// </summary>
         /// <param name="folder"></param>
@@ -17,7 +22,7 @@ namespace KabeDon.Packaging
         Task<IStorage> GetSubfolderAsync(string folder);
 
         /// <summary>
-        /// フォルダー内のファイル一覧を取得する。
+        /// フォルダー内のファイル一覧を絶対パスで取得する。
         /// </summary>
         /// <returns></returns>
         Task<string[]> GetFilesAsync();

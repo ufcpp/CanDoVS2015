@@ -26,6 +26,8 @@ namespace KabeDon.Packaging
             _storage = storage;
         }
 
+        public async Task<string> GetPathAsync() => (await _storage).Path;
+
         public async Task<string[]> GetFilesAsync()
         {
             var s = await _storage;

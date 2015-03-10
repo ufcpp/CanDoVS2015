@@ -1,4 +1,5 @@
 ﻿using KabeDon.Packaging;
+using System;
 using System.Threading.Tasks;
 
 namespace TrialConsole
@@ -7,8 +8,8 @@ namespace TrialConsole
     {
         static void Main(string[] args)
         {
-            CreateLevelData();
-            //Load().Wait();
+            //CreateLevelData();
+            Load().Wait();
         }
 
         private static async Task Load()
@@ -18,7 +19,11 @@ namespace TrialConsole
             await m.LoadFrom(s);
 
             var level = m.Level;
-            System.Console.WriteLine(level.InitialState);
+            Console.WriteLine(level.InitialState);
+            foreach (var state in level.States) Console.WriteLine(state.Id);
+
+            foreach (var x in m.ImageFiles) Console.WriteLine(x);
+            foreach (var x in m.SoundFiles) Console.WriteLine(x);
         }
 
 

@@ -24,6 +24,8 @@ namespace KabeDon.Packaging
 
         private FileStorage() { }
 
+        public Task<string> GetPathAsync() => Task.FromResult(_path);
+
         public Task<string[]> GetFilesAsync()
         {
             var files = Directory.GetFiles(_path);
