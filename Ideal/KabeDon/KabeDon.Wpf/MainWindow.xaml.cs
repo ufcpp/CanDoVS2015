@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Reactive.Linq;
 using MediaPlayer = System.Windows.Media.MediaPlayer;
+using KabeDon.Packages;
 
 namespace KabeDon.Wpf
 {
