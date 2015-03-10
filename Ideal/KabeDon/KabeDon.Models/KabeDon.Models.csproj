@@ -56,9 +56,9 @@
     <Compile Include="Engine\Messages\Message.cs" />
     <Compile Include="Engine\Messages\PlaySound.cs" />
     <Compile Include="Engine\Messages\AwaitStart.cs" />
-    <Compile Include="Packages\IStorage.cs" />
-    <Compile Include="Packages\PackageManager.cs" />
-    <Compile Include="Packages\StorageExtensions.cs" />
+    <Compile Include="Packaging\IStorage.cs" />
+    <Compile Include="Packaging\PackageManager.cs" />
+    <Compile Include="Packaging\StorageExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

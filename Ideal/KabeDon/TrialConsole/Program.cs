@@ -1,4 +1,4 @@
-﻿using KabeDon.Packages;
+﻿using KabeDon.Packaging;
 using System.Threading.Tasks;
 
 namespace TrialConsole
@@ -7,7 +7,9 @@ namespace TrialConsole
     {
         static void Main(string[] args)
         {
-            CreateLevelData();
+            System.Console.WriteLine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+
+            //CreateLevelData();
             //Load().Wait();
         }
 

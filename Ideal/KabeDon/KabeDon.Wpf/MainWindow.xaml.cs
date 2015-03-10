@@ -5,7 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Reactive.Linq;
 using MediaPlayer = System.Windows.Media.MediaPlayer;
-using KabeDon.Packages;
+using KabeDon.Packaging;
 
 namespace KabeDon.Wpf
 {
@@ -23,7 +23,7 @@ namespace KabeDon.Wpf
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var m = new Packages.PackageManager();
+            var m = new PackageManager();
 
             var folder = Path.GetDirectoryName(typeof(MainWindow).Assembly.Location);
             var path = Path.Combine(folder, "仮データ");

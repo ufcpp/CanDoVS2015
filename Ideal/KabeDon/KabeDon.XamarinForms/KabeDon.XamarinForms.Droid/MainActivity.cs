@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.IO;
+using KabeDon.Packaging;
 
 namespace KabeDon.XamarinForms.Droid
 {

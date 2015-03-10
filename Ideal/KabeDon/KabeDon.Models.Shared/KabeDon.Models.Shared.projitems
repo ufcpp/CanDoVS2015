@@ -9,7 +9,7 @@
     <Import_RootNamespace>KabeDon</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Packages\FileStorage.WinRt.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Packages\FileStorage.File.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packaging\FileStorage.WinRt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Packaging\FileStorage.File.cs" />
   </ItemGroup>
 </Project>
