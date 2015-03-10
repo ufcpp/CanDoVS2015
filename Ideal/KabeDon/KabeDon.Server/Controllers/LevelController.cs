@@ -5,6 +5,7 @@ namespace KabeDon.Server.Controllers
     public class LevelController : Controller
     {
         //todo: 認証付ける
+        //todo: ?name=... じゃない URL ルーティング書く
 
         // GET: Level
         public ActionResult Index(string name)
