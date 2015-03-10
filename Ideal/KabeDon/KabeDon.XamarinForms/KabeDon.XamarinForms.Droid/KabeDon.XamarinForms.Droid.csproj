@@ -55,6 +55,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.IO" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />

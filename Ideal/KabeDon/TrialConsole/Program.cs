@@ -1,5 +1,6 @@
 ﻿using KabeDon.Packaging;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace TrialConsole
@@ -24,6 +25,13 @@ namespace TrialConsole
 
             foreach (var x in m.ImageFiles) Console.WriteLine(x);
             foreach (var x in m.SoundFiles) Console.WriteLine(x);
+
+            using (var stream = File.Open("test.zip", FileMode.Create))
+                await m.Pack(s, stream);
+
+            var s2 = new FileStorage("SampleData2");
+            using (var stream = File.OpenRead("test.zip"))
+                await m.Unpack(s2, stream);
         }
 
 

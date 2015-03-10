@@ -14,6 +14,7 @@ namespace KabeDon.Packaging
     /// </summary>
     class FileStorage : IStorage
     {
+        //todo: async なファクトリメソッドを作って、こいつは StorageFolder _storage; に変えたい。
         IAsyncOperation<StorageFolder> _storage;
 
         public FileStorage(string levelName)
@@ -26,7 +27,7 @@ namespace KabeDon.Packaging
             _storage = storage;
         }
 
-        public async Task<string> GetPathAsync() => (await _storage).Path;
+        public string FullPath => _storage.GetResults().Path;
 
         public async Task<string[]> GetFilesAsync()
         {
@@ -42,16 +43,30 @@ namespace KabeDon.Packaging
             return new FileStorage(sub);
         }
 
+        //todo: この辺りたぶんバグってる。パスの相対・絶対おかしい。ストアアプリ対応始めたら直す。
+
         public async Task<Stream> OpenReadAsync(string file)
         {
             var s = await _storage;
             return await s.OpenStreamForReadAsync(file);
         }
 
+        public async Task<Stream> OpenReadAsync(Uri uri)
+        {
+            var s = await _storage;
+            return await s.OpenStreamForReadAsync(uri.AbsolutePath);
+        }
+
         public async Task<Stream> OpenWriteAsync(string file)
         {
             var s = await _storage;
             return await s.OpenStreamForWriteAsync(file, CreationCollisionOption.ReplaceExisting);
+        }
+
+        public async Task<Stream> OpenWriteAsync(Uri uri)
+        {
+            var s = await _storage;
+            return await s.OpenStreamForWriteAsync(uri.AbsolutePath, CreationCollisionOption.ReplaceExisting);
         }
     }
 }

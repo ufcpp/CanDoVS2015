@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace KabeDon.Packaging
@@ -12,7 +13,7 @@ namespace KabeDon.Packaging
         /// <summary>
         /// このフォルダーの絶対パス。
         /// </summary>
-        Task<string> GetPathAsync();
+        string FullPath { get; }
 
         /// <summary>
         /// サブフォルダーを取得する。
@@ -35,10 +36,24 @@ namespace KabeDon.Packaging
         Task<Stream> OpenReadAsync(string file);
 
         /// <summary>
+        /// ファイル読みこみ用ストリームを取得。
+        /// </summary>
+        /// <param name="uri">ファイルのパス。</param>
+        /// <returns>読みこみ用ストリーム。</returns>
+        Task<Stream> OpenReadAsync(Uri uri);
+
+        /// <summary>
         /// ファイル書きこみ用ストリームを取得。
         /// </summary>
         /// <param name="file">ファイルの相対パス。</param>
         /// <returns>書きこみ用ストリーム。</returns>
         Task<Stream> OpenWriteAsync(string file);
+
+        /// <summary>
+        /// ファイル書きこみ用ストリームを取得。
+        /// </summary>
+        /// <param name="uri">ファイルのパス。</param>
+        /// <returns>書きこみ用ストリーム。</returns>
+        Task<Stream> OpenWriteAsync(Uri uri);
     }
 }
