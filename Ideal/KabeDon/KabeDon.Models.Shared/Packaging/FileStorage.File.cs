@@ -12,12 +12,14 @@ namespace KabeDon.Packaging
     /// </summary>
     class FileStorage : IStorage
     {
+        const string AppName = "KabeDon";
+
         private string _path;
 
         public FileStorage(string levelName)
         {
             var personal = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            _path = Path.Combine(personal, levelName);
+            _path = Path.Combine(personal, AppName, levelName);
         }
 
         private FileStorage() { }
