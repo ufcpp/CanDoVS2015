@@ -7,17 +7,18 @@ namespace TrialConsole
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
-
             //CreateLevelData();
-            //Load().Wait();
+            Load().Wait();
         }
 
         private static async Task Load()
         {
-            var s = new Storage();
+            var s = new FileStorage("SampleData");
             var m = new PackageManager();
             await m.LoadFrom(s);
+
+            var level = m.Level;
+            System.Console.WriteLine(level.InitialState);
         }
 
 
