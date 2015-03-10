@@ -1,4 +1,6 @@
 ﻿using KabeDon.DataModels;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -50,5 +52,39 @@ namespace KabeDon.Packaging
         /// <param name="name">音声ファイル名。</param>
         /// <returns><paramref name="name"/>のフルパス。</returns>
         public string GetSound(string name) => SoundFiles.First(x => x.EndsWith(name));
+
+        public async Task Pack(IStorage root, Stream writeStream)
+        {
+            using (var zipArchive = new ZipArchive(writeStream, ZipArchiveMode.Create, false, System.Text.Encoding.UTF8))
+            {
+                foreach (var current in await root.GetFilesAsync())
+                {
+                    //todo: 埋める
+                }
+
+                var imageFolder = await root.GetSubfolderAsync("Images");
+                foreach (var current in await imageFolder.GetFilesAsync())
+                {
+                    //todo: 埋める
+                }
+
+                var soundFolder = await root.GetSubfolderAsync("Sounds");
+                foreach (var current in await soundFolder.GetFilesAsync())
+                {
+                    //todo: 埋める
+                }
+            }
+        }
+
+        public async Task Unpack(IStorage root, Stream readStream)
+        {
+            using (var zipArchive = new ZipArchive(readStream, ZipArchiveMode.Read, false, System.Text.Encoding.UTF8))
+            {
+                var imageFolder = await root.GetSubfolderAsync("Images");
+                var soundFolder = await root.GetSubfolderAsync("Sounds");
+
+                //todo: 埋める
+            }
+        }
     }
 }

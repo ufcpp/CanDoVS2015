@@ -7,8 +7,8 @@ namespace TrialConsole
     {
         static void Main(string[] args)
         {
-            //CreateLevelData();
-            Load().Wait();
+            CreateLevelData();
+            //Load().Wait();
         }
 
         private static async Task Load()
