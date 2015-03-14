@@ -6,6 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <local:VisibleIf x:Key="VisibleIfFalse" IfTrue="False" />
+    </Page.Resources>
 
     <Grid x:Name="Cloudia" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Viewbox>
