@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using System.IO;
 using KabeDon.Packaging;
+using Android.Media;
 
 namespace KabeDon.XamarinForms.Droid
 {
@@ -23,6 +24,9 @@ namespace KabeDon.XamarinForms.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(url, s));
+
+            //Android.Net.Uri.Creator.
+            //MediaPlayer.Create(
         }
     }
 }

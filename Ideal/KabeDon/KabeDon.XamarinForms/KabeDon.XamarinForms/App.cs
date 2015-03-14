@@ -16,52 +16,14 @@ namespace KabeDon.XamarinForms
     {
         private string _serverUrl;
         private IStorage _root;
+        private ISoundPlayer _player;
 
-        public App(string serverUrl = null, IStorage root = null)
+        public App(string serverUrl = null, IStorage root = null, ISoundPlayer player = null)
         {
             _serverUrl = serverUrl;
             _root = root;
-
-            //var button = new Button
-            //{
-            //    Text = "click here",
-            //};
-            //button.Clicked += Button_Clicked;
-
-            //_label = new Label
-            //{
-            //    XAlign = TextAlignment.Center,
-            //    Text = "Welcome to Xamarin Forms!"
-            //};
-
-            //MainPage = new ContentPage
-            //{
-            //    Content = new StackLayout
-            //    {
-            //        VerticalOptions = LayoutOptions.Center,
-            //        Children = {
-            //            button,
-            //            _label,
-            //        }
-            //    }
-            //};
+            _player = player;
         }
-
-        //private Label _label;
-
-        //private async void Button_Clicked(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        //string[] list = await LoadLevelList();
-        //        var c = new HttpClient();
-        //        var res = await c.GetAsync(_serverUrl + "Level?name=SampleCloudia");
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //}
 
         CancellationTokenSource _endOfGame = new CancellationTokenSource();
 
@@ -71,23 +33,38 @@ namespace KabeDon.XamarinForms
 
             var vm = new KabeDonViewModel(m);
 
-            var image = new Image();
+            var label = new Label();
 
-            var page = new ContentPage
+            //vm.TapCommand
+
+            var imageTap = new TapGestureRecognizer();
+            imageTap.Tapped += (sender, e) =>
             {
-                Content = new Grid
-                {
-                    Children =
+                var args = (TappedEventArgs)e;
+                label.Text = args.Parameter.ToString();
+            };
+
+            var image = new Image();
+            image.GestureRecognizers.Add(imageTap);
+
+            var grid = new Grid
+            {
+                Children =
                     {
                         image,
                         new StackLayout
                         {
-                        }
+                            Children =
+                            {
+                                label
+                            },
+                        },
                     },
-                },
             };
+
+            var page = new ContentPage { Content = grid };
+
             MainPage = page;
-            page.BindingContext = vm;
 
             SetBinding(vm, nameof(vm.Image), image, (s, t) => t.Source = ImageSource.FromFile(s.Image));
 
