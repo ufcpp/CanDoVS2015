@@ -6,29 +6,20 @@ namespace KabeDon.XamarinForms.Droid
 {
     class AndroidSoundPlayer : ISoundPlayer
     {
-        // 数チャネル同時再生できるようにする？
-        private readonly Dictionary<string, MediaPlayer>  _players = new Dictionary<string, MediaPlayer>();
+        private SoundPool _pool = new SoundPool(20, Stream.Music, 0);
+        private readonly Dictionary<string, int>  _soundIds = new Dictionary<string, int>();
 
         public void Play(string path)
         {
             try
             {
-                MediaPlayer player;
-            if (!_players.TryGetValue(path, out player))
-            {
-                player = new MediaPlayer();
-                player.SetAudioStreamType(Stream.Music);
-                player.SetDataSource(path);
-                player.Prepare();
-                    _players.Add(path, player);
-            }
-
-                if (player.IsPlaying)
+                int id;
+                if (!_soundIds.TryGetValue(path, out id))
                 {
-                    player.Stop();
+                    id = _pool.Load(path, 1);
+                    _soundIds.Add(path, id);
                 }
-                player.Reset();
-                player.Start();
+                _pool.Play(id, 1, 1, 1, 0, 1);
             }
             catch (Exception ex)
             {
