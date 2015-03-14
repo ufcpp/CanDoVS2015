@@ -1,9 +1,11 @@
-﻿using KabeDon.Packaging;
+﻿using KabeDon.Engine;
+using KabeDon.Packaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -20,56 +22,107 @@ namespace KabeDon.XamarinForms
             _serverUrl = serverUrl;
             _root = root;
 
-            var button = new Button
-            {
-                Text = "click here",
-            };
-            button.Clicked += Button_Clicked;
+            //var button = new Button
+            //{
+            //    Text = "click here",
+            //};
+            //button.Clicked += Button_Clicked;
 
-            _label = new Label
-            {
-                XAlign = TextAlignment.Center,
-                Text = "Welcome to Xamarin Forms!"
-            };
+            //_label = new Label
+            //{
+            //    XAlign = TextAlignment.Center,
+            //    Text = "Welcome to Xamarin Forms!"
+            //};
 
-            MainPage = new ContentPage
-            {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        button,
-                        _label,
-                    }
-                }
-            };
-
-            MainPage.Appearing += MainPage_Appearing;
+            //MainPage = new ContentPage
+            //{
+            //    Content = new StackLayout
+            //    {
+            //        VerticalOptions = LayoutOptions.Center,
+            //        Children = {
+            //            button,
+            //            _label,
+            //        }
+            //    }
+            //};
         }
 
-        private async void MainPage_Appearing(object sender, EventArgs e)
+        //private Label _label;
+
+        //private async void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        //string[] list = await LoadLevelList();
+        //        var c = new HttpClient();
+        //        var res = await c.GetAsync(_serverUrl + "Level?name=SampleCloudia");
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //}
+
+        CancellationTokenSource _endOfGame = new CancellationTokenSource();
+
+        protected override async void OnStart()
         {
             PackageManager m = await Load();
 
-            var level = m.Level;
+            var vm = new KabeDonViewModel(m);
 
-            _label.Text = level.InitialState;
-        }
+            var image = new Image();
 
-        private Label _label;
+            var page = new ContentPage
+            {
+                Content = new Grid
+                {
+                    Children =
+                    {
+                        image,
+                        new StackLayout
+                        {
+                        }
+                    },
+                },
+            };
+            MainPage = page;
+            page.BindingContext = vm;
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
+            SetBinding(vm, nameof(vm.Image), image, (s, t) => t.Source = ImageSource.FromFile(s.Image));
+
             try
             {
-                //string[] list = await LoadLevelList();
-                var c = new HttpClient();
-                var res = await c.GetAsync(_serverUrl + "Level?name=SampleCloudia");
+                while (!_endOfGame.IsCancellationRequested)
+                {
+                    await vm.Engine.ExecuteAsync(_endOfGame.Token);
+                }
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
+        }
+
+        private static void SetBinding<TTarget>(KabeDonViewModel vm, string sourceName, TTarget target, Action<KabeDonViewModel, TTarget> bind)
+        {
+            bind(vm, target);
+
+            vm.PropertyChanged += (sender, arg) =>
+            {
+                if (arg.PropertyName == sourceName) bind(vm, target);
+            };
+        }
+
+        protected override void OnSleep()
+        {
+            // 今のところ、resume 機能なし。スリープした瞬間終了。
+            _endOfGame.Cancel();
+        }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
         }
 
         private async Task<PackageManager> Load()
@@ -93,21 +146,6 @@ namespace KabeDon.XamarinForms
             var content = await res.Content.ReadAsStringAsync();
             var list = content.Split(',');
             return list;
-        }
-
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
         }
     }
 }
