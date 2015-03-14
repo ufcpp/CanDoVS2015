@@ -17,7 +17,7 @@ namespace KabeDon.XamarinForms.Droid
             e.GetPointerCoords(0, p);
 
             var image = (TouchEventImage)Element;
-            image.OnTouch(p.X, p.Y);
+            image.OnTouch(p.X / Width, p.Y / Height);
 
             return base.OnTouchEvent(e);
         }

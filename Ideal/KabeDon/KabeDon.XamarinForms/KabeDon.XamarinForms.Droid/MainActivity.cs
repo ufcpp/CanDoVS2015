@@ -20,10 +20,11 @@ namespace KabeDon.XamarinForms.Droid
             base.OnCreate(bundle);
 
             var url = Resources.GetString(Resource.String.ServerUrl);
-            var s = FileStorage.Root();
+            var root = FileStorage.Root();
+            var player = new AndroidSoundPlayer();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App(url, s));
+            LoadApplication(new App(url, root, player));
         }
     }
 }

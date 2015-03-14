@@ -2,6 +2,7 @@
 using KabeDon.Packaging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -33,16 +34,28 @@ namespace KabeDon.XamarinForms
 
             var vm = new KabeDonViewModel(m);
 
-            var label = new Label();
+            vm.SoundRequested.Subscribe(_player.Play);
+
+            var startButton = new Button()
+            {
+                Text = "開始",
+            };
+            startButton.Clicked += (sender, e) => vm.StartCommand.Execute(null);
+            SetBinding(vm.Engine, nameof(vm.Engine.IsRunning), startButton, (s, t) => t.IsVisible = !s.IsRunning);
+
+            var remainderTimelabel = new Label();
+            SetBinding(vm.Engine, nameof(vm.Engine.RemainderTime), remainderTimelabel, (s, t) => t.Text = $"残り時間 {s.RemainderTime.Minutes:00}:{s.RemainderTime.Seconds:00}");
+
+            var scorelabel = new Label();
+            SetBinding(vm.Engine, nameof(vm.Engine.Score), scorelabel, (s, t) => t.Text = $"スコア {s.Score}");
 
             var image = new TouchEventImage();
             image.Touch.Subscribe(p =>
             {
                 var pos = new DataModels.Point(
-                    (int)(1080 / image.Width * p.X),
-                    (int)(1920 / image.Height * p.Y));
-
-                label.Text = $"({(int)p.X}, {(int)p.Y}) / ({image.Width}, {image.Height}) => {pos}";
+                    (int)(1080 * p.X),
+                    (int)(1920 * p.Y));
+                vm.TapCommand.Execute(pos);
             });
 
             var grid = new Grid
@@ -54,7 +67,9 @@ namespace KabeDon.XamarinForms
                         {
                             Children =
                             {
-                                label
+                                startButton,
+                                remainderTimelabel,
+                                scorelabel,
                             },
                         },
                     },
@@ -79,7 +94,8 @@ namespace KabeDon.XamarinForms
             }
         }
 
-        private static void SetBinding<TTarget>(KabeDonViewModel vm, string sourceName, TTarget target, Action<KabeDonViewModel, TTarget> bind)
+        private static void SetBinding<TSource, TTarget>(TSource vm, string sourceName, TTarget target, Action<TSource, TTarget> bind)
+            where TSource : INotifyPropertyChanged
         {
             bind(vm, target);
 

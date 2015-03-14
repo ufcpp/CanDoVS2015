@@ -126,7 +126,7 @@ namespace KabeDon.Packaging
 
                 foreach (var entry in zipArchive.Entries)
                 {
-                    var file = entry.Name;
+                    var file = entry.Name.Split('\\', '/').Last(); // Windows で圧縮して、他で解凍したとき用
                     var storage =
                         entry.FullName.StartsWith(Images) ? imageFolder :
                         entry.FullName.StartsWith(Sounds) ? soundFolder :
