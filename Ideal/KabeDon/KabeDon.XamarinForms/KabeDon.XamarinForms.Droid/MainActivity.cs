@@ -24,9 +24,6 @@ namespace KabeDon.XamarinForms.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(url, s));
-
-            //Android.Net.Uri.Creator.
-            //MediaPlayer.Create(
         }
     }
 }

@@ -35,17 +35,15 @@ namespace KabeDon.XamarinForms
 
             var label = new Label();
 
-            //vm.TapCommand
-
-            var imageTap = new TapGestureRecognizer();
-            imageTap.Tapped += (sender, e) =>
+            var image = new TouchEventImage();
+            image.Touch.Subscribe(p =>
             {
-                var args = (TappedEventArgs)e;
-                label.Text = args.Parameter.ToString();
-            };
+                var pos = new DataModels.Point(
+                    (int)(1080 / image.Width * p.X),
+                    (int)(1920 / image.Height * p.Y));
 
-            var image = new Image();
-            image.GestureRecognizers.Add(imageTap);
+                label.Text = $"({(int)p.X}, {(int)p.Y}) / ({image.Width}, {image.Height}) => {pos}";
+            });
 
             var grid = new Grid
             {
