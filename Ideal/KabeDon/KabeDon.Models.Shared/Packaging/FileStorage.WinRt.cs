@@ -50,6 +50,12 @@ namespace KabeDon.Packaging
             return new FileStorage(sub);
         }
 
+        internal static FileStorage Root()
+        {
+            throw new NotImplementedException();
+        }
+
+
         //todo: この辺りたぶんバグってる。パスの相対・絶対おかしい。ストアアプリ対応始めたら直す。
 
         public async Task<IStorage> GetSubfolderAsync(Uri uri)

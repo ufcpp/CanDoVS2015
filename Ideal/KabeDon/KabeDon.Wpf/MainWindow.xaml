@@ -10,39 +10,35 @@
     <Window.Resources>
         <local:VisibleIf x:Key="VisibleIfFalse" IfTrue="False" />
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="Cloudia" Background="White">
         <Viewbox>
-            <Grid x:Name="Cloudia" Background="White">
-                <Viewbox>
-                    <Grid>
-                        <Image Source="{Binding Image}" Width="1080" Height="1920" />
+            <Grid>
+                <Image Source="{Binding Image}" Width="1080" Height="1920" />
                         
-                        <StackPanel HorizontalAlignment="Right">
-                            <StackPanel.Resources>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="FontSize" Value="50"/>
-                                    <Setter Property="Foreground" Value="#FFFF7B7B"/>
-                                </Style>
-                            </StackPanel.Resources>
+                <StackPanel HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="FontSize" Value="50"/>
+                            <Setter Property="Foreground" Value="#FFFF7B7B"/>
+                        </Style>
+                    </StackPanel.Resources>
                             
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="スコア: " />
-                                <TextBlock Text="{Binding Engine.Score}" FontSize="50" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="残り時間: "/>
-                                <TextBlock Text="{Binding Engine.RemainderTime, StringFormat=mm\\:ss}" />
-                            </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="スコア: " />
+                        <TextBlock Text="{Binding Engine.Score}" FontSize="50" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="残り時間: "/>
+                        <TextBlock Text="{Binding Engine.RemainderTime, StringFormat=mm\\:ss}" />
+                    </StackPanel>
 
-                        </StackPanel>
-                    </Grid>
-                </Viewbox>
-                <Button
-                    Content="開始"
-                    Command="{Binding StartCommand}"
-                    Visibility="{Binding Engine.IsRunning, Converter={StaticResource VisibleIfFalse}}"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" />
+                </StackPanel>
             </Grid>
         </Viewbox>
+        <Button
+            Content="開始"
+            Command="{Binding StartCommand}"
+            Visibility="{Binding Engine.IsRunning, Converter={StaticResource VisibleIfFalse}}"
+            HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" />
     </Grid>
 </Window>

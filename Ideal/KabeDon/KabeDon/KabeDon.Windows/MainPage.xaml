@@ -7,7 +7,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="Cloudia" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox>
+            <Grid>
+                <Image Source="{Binding Image}" Width="1080" Height="1920" />
+
+                <StackPanel HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                        <Style x:Key="TextStyle" TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="50"/>
+                            <Setter Property="Foreground" Value="#FFFF7B7B"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="スコア: " />
+                        <TextBlock Text="{Binding Engine.Score}" FontSize="50" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="残り時間: "/>
+                        <TextBlock Text="{Binding Engine.RemainderTime}" />
+                    </StackPanel>
+
+                </StackPanel>
+            </Grid>
+        </Viewbox>
+        <Button
+            Content="開始"
+            Command="{Binding StartCommand}"
+            Visibility="{Binding Engine.IsRunning, Converter={StaticResource VisibleIfFalse}}"
+            HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" />
 
     </Grid>
 </Page>
