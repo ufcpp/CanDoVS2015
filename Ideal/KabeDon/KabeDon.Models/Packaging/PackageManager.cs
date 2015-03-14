@@ -49,7 +49,7 @@ namespace KabeDon.Packaging
         /// </summary>
         /// <param name="name">画像ファイル名。</param>
         /// <returns><paramref name="name"/>のフルパス。</returns>
-        public string GetImage(string name) => ImageFiles.First(x => x.EndsWith(name));
+        public string GetImage(string name) => name == null ? null : ImageFiles.First(x => x.EndsWith(name));
 
         /// <summary>
         /// 音声のフルパス取得。
