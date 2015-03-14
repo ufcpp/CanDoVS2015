@@ -16,13 +16,13 @@ namespace KabeDon.XamarinForms.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            //Android.OS.Environment.DataDirectory.
-            //FileSystemInfo
-            //System.Environment
             base.OnCreate(bundle);
 
+            var url = Resources.GetString(Resource.String.ServerUrl);
+            var s = FileStorage.Root();
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            LoadApplication(new App(url, s));
         }
     }
 }

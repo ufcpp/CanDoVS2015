@@ -27,7 +27,7 @@ namespace KabeDon.Wpf
 
             var folder = Path.GetDirectoryName(typeof(MainWindow).Assembly.Location);
             var path = Path.Combine(folder, "仮データ");
-            await m.LoadFrom(new FileStorage(path));
+            await m.LoadFrom(FileStorage.Level(path));
 
             var vm = new KabeDonViewModel(m);
             DataContext = vm;

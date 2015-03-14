@@ -14,10 +14,18 @@ namespace KabeDon.Packaging
     {
         const string AppName = "KabeDon";
 
-        public FileStorage(string levelName)
+        public static FileStorage Root()
         {
             var personal = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            FullPath = Path.Combine(personal, AppName, levelName);
+            var path = Path.Combine(personal, AppName);
+            return new FileStorage { FullPath = path };
+        }
+
+        public static FileStorage Level(string levelName)
+        {
+            var personal = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var path = Path.Combine(personal, AppName, levelName);
+            return new FileStorage { FullPath = path };
         }
 
         private FileStorage() { }
@@ -35,6 +43,12 @@ namespace KabeDon.Packaging
         }
         private string _path;
 
+        public Task<string[]> GetSubfolderPathsAsync()
+        {
+            var folders = Directory.GetDirectories(FullPath);
+            return Task.FromResult(folders);
+        }
+
         public Task<string[]> GetFilesAsync()
         {
             var files = Directory.GetFiles(FullPath);
@@ -45,6 +59,12 @@ namespace KabeDon.Packaging
         {
             var sub = Path.Combine(FullPath, folder);
             return Task.FromResult<IStorage>(new FileStorage { FullPath = sub });
+        }
+
+        public Task<IStorage> GetSubfolderAsync(Uri uri)
+        {
+            var path = uri.IsAbsoluteUri ? uri.AbsolutePath : Path.Combine(FullPath, uri.LocalPath);
+            return Task.FromResult<IStorage>(new FileStorage { FullPath = path });
         }
 
         public Task<Stream> OpenReadAsync(string file)

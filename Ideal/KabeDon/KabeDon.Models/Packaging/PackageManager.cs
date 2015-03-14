@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace KabeDon.Packaging
@@ -68,7 +69,7 @@ namespace KabeDon.Packaging
         /// 必要なこと以外さぼってるので注意。
         /// タイムスタンプとか適当(全ファイル、このメソッドを呼んだ時刻になる)。
         /// </remarks>
-        public async Task Pack(IStorage root, Stream writeStream, bool leaveOpen = false)
+        public static async Task Pack(IStorage root, Stream writeStream, bool leaveOpen = false)
         {
             var path = root.FullPath;
             var now = DateTime.Now;
@@ -114,7 +115,7 @@ namespace KabeDon.Packaging
         /// 信用できない ZIP を開く想定持ってない。
         /// チェックさぼってる。
         /// </remarks>
-        public async Task Unpack(IStorage root, Stream readStream)
+        public static async Task Unpack(IStorage root, Stream readStream)
         {
             var path = root.FullPath;
 
@@ -140,6 +141,45 @@ namespace KabeDon.Packaging
                     }
                 }
             }
+        }
+
+        public static async Task Synchronize(string serverUrl, IStorage root)
+        {
+            var serverNames = await LoadLevelList(serverUrl);
+            var localNames = await root.GetSubfolderPathsAsync();
+
+            foreach (var name in serverNames)
+            {
+                var local = localNames.FirstOrDefault(x => x.EndsWith(name));
+
+                if (local != null)
+                {
+                    // すでにローカルにダウンロード済み → 何もしない
+                    //todo: バージョンチェックの方法とか考えた方がいいかも。
+                    continue;
+                }
+
+                var level = await root.GetSubfolderAsync(name);
+                var stream = await LoadLevel(serverUrl, name);
+
+                await Unpack(level, stream);
+            }
+        }
+
+        private static async Task<string[]> LoadLevelList(string serverUrl)
+        {
+            var c = new HttpClient();
+            var res = await c.GetAsync(serverUrl + "Level");
+            var content = await res.Content.ReadAsStringAsync();
+            var list = content.Split(',');
+            return list;
+        }
+
+        private static async Task<Stream> LoadLevel(string serverUrl, string levelName)
+        {
+            var c = new HttpClient();
+            var res = await c.GetAsync(serverUrl + "Level?name=" + levelName);
+            return await res.Content.ReadAsStreamAsync();
         }
     }
 }

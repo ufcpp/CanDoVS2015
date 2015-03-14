@@ -18,9 +18,22 @@ namespace KabeDon.Packaging
         /// <summary>
         /// サブフォルダーを取得する。
         /// </summary>
-        /// <param name="folder"></param>
-        /// <returns></returns>
+        /// <param name="folder">フォルダーの相対パス</param>
+        /// <returns>サブフォルダー。</returns>
         Task<IStorage> GetSubfolderAsync(string folder);
+
+        /// <summary>
+        /// サブフォルダーを取得する。
+        /// </summary>
+        /// <param name="uri">フォルダーのパス。</param>
+        /// <returns>サブフォルダー。</returns>
+        Task<IStorage> GetSubfolderAsync(Uri uri);
+
+        /// <summary>
+        /// フォルダー内のサブフォルダー一覧を絶対パスで取得する。
+        /// </summary>
+        /// <returns></returns>
+        Task<string[]> GetSubfolderPathsAsync();
 
         /// <summary>
         /// フォルダー内のファイル一覧を絶対パスで取得する。

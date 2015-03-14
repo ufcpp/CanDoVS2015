@@ -29,6 +29,13 @@ namespace KabeDon.Packaging
 
         public string FullPath => _storage.GetResults().Path;
 
+        public async Task<string[]> GetSubfolderPathsAsync()
+        {
+            var s = await _storage;
+            var files = await s.GetFoldersAsync();
+            return files.Select(x => x.Path).ToArray();
+        }
+
         public async Task<string[]> GetFilesAsync()
         {
             var s = await _storage;
@@ -44,6 +51,13 @@ namespace KabeDon.Packaging
         }
 
         //todo: この辺りたぶんバグってる。パスの相対・絶対おかしい。ストアアプリ対応始めたら直す。
+
+        public async Task<IStorage> GetSubfolderAsync(Uri uri)
+        {
+            var s = await _storage;
+            var sub = s.GetFolderAsync(uri.AbsolutePath);
+            return new FileStorage(sub);
+        }
 
         public async Task<Stream> OpenReadAsync(string file)
         {

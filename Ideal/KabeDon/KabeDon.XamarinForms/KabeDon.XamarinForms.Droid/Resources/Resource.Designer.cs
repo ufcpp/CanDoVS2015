@@ -56,6 +56,22 @@ namespace KabeDon.XamarinForms.Droid
 			{
 			}
 		}
+		
+		public partial class String
+		{
+			
+			// aapt resource value: 0x7f030000
+			public const int ServerUrl = 2130903040;
+			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private String()
+			{
+			}
+		}
 	}
 }
 #pragma warning restore 1591

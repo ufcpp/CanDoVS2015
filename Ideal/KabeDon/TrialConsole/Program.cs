@@ -15,7 +15,7 @@ namespace TrialConsole
 
         private static async Task Load()
         {
-            var s = new FileStorage("SampleData");
+            var s = FileStorage.Level("SampleData");
             var m = new PackageManager();
             await m.LoadFrom(s);
 
@@ -27,11 +27,11 @@ namespace TrialConsole
             foreach (var x in m.SoundFiles) Console.WriteLine(x);
 
             using (var stream = File.Open("test.zip", FileMode.Create))
-                await m.Pack(s, stream);
+                await PackageManager.Pack(s, stream);
 
-            var s2 = new FileStorage("SampleData2");
+            var s2 = FileStorage.Level("SampleData2");
             using (var stream = File.OpenRead("test.zip"))
-                await m.Unpack(s2, stream);
+                await PackageManager.Unpack(s2, stream);
         }
 
 
