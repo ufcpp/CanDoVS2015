@@ -1,5 +1,6 @@
 ﻿using KabeDon.Engine;
 using KabeDon.Packaging;
+using KabeDon.Sound;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,13 +19,13 @@ namespace KabeDon.XamarinForms
     {
         private string _serverUrl;
         private IStorage _root;
-        private ISoundPlayer _player;
+        private ISoundPlayerFactory _soundFactory;
 
-        public App(string serverUrl = null, IStorage root = null, ISoundPlayer player = null)
+        public App(string serverUrl = null, IStorage root = null, ISoundPlayerFactory soundFactory = null)
         {
             _serverUrl = serverUrl;
             _root = root;
-            _player = player;
+            _soundFactory = soundFactory;
         }
 
         CancellationTokenSource _endOfGame = new CancellationTokenSource();
@@ -34,8 +35,6 @@ namespace KabeDon.XamarinForms
             PackageManager m = await Load();
 
             var vm = new KabeDonViewModel(m);
-
-            vm.SoundRequested.ObserveOn(SynchronizationContext.Current).Subscribe(_player.Play);
 
             var startButton = new Button()
             {
@@ -127,7 +126,7 @@ namespace KabeDon.XamarinForms
             var levelFolder = await _root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
 
             var m = new PackageManager();
-            await m.LoadFrom(levelFolder);
+            await m.LoadFrom(levelFolder, _soundFactory);
             return m;
         }
 

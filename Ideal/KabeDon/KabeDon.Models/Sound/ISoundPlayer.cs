@@ -1,4 +1,4 @@
-﻿namespace KabeDon.XamarinForms
+﻿namespace KabeDon.Sound
 {
     /// <summary>
     /// サウンド再生用。

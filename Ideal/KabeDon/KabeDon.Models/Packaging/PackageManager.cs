@@ -1,4 +1,5 @@
 ﻿using KabeDon.DataModels;
+using KabeDon.Sound;
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -23,16 +24,13 @@ namespace KabeDon.Packaging
         /// </summary>
         public string[] ImageFiles { get; set; }
 
-        /// <summary>
-        /// 音声データ一覧(フルパス)。
-        /// </summary>
-        public string[] SoundFiles { get; set; }
+        public ISoundPlayer SoundPlayer { get; private set; }
 
         /// <summary>
         /// データの読み込み。
         /// </summary>
         /// <param name="root">レベル データの入っているフォルダー。</param>
-        public async Task LoadFrom(IStorage root)
+        public async Task LoadFrom(IStorage root, ISoundPlayerFactory factory)
         {
             var json = await root.ReadStringAsync("level.json");
             Level = Newtonsoft.Json.JsonConvert.DeserializeObject<Level>(json);
@@ -40,8 +38,8 @@ namespace KabeDon.Packaging
             var imageFolder = await root.GetSubfolderAsync(Images);
             ImageFiles = await imageFolder.GetFilesAsync();
 
-            var soundFolder = await root.GetSubfolderAsync(Sounds);
-            SoundFiles = await soundFolder.GetFilesAsync();
+            var sound = await root.GetSubfolderAsync(Sounds);
+            SoundPlayer = factory.Create(sound);
         }
 
         /// <summary>
@@ -50,13 +48,6 @@ namespace KabeDon.Packaging
         /// <param name="name">画像ファイル名。</param>
         /// <returns><paramref name="name"/>のフルパス。</returns>
         public string GetImage(string name) => name == null ? null : ImageFiles.First(x => x.EndsWith(name));
-
-        /// <summary>
-        /// 音声のフルパス取得。
-        /// </summary>
-        /// <param name="name">音声ファイル名。</param>
-        /// <returns><paramref name="name"/>のフルパス。</returns>
-        public string GetSound(string name) => SoundFiles.First(x => x.EndsWith(name));
 
         /// <summary>
         /// ZIP アーカイブ化する。

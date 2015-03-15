@@ -1,14 +1,9 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using System.IO;
 using KabeDon.Packaging;
-using Android.Media;
+using KabeDon.Sound;
 
 namespace KabeDon.XamarinForms.Droid
 {
@@ -21,10 +16,9 @@ namespace KabeDon.XamarinForms.Droid
 
             var url = Resources.GetString(Resource.String.ServerUrl);
             var root = FileStorage.Root();
-            var player = new AndroidSoundPlayer();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App(url, root, player));
+            LoadApplication(new App(url, root, new SoundPlayerFactory()));
         }
     }
 }

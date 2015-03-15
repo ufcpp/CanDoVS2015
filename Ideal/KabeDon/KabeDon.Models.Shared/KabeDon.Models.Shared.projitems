@@ -11,5 +11,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Packaging\FileStorage.WinRt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Packaging\FileStorage.File.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sound\DummySoundPlayer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sound\SoundPlayer.droid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sound\SoundPlayer.WinRt.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sound\SoundPlayer.wpf.cs" />
   </ItemGroup>
 </Project>

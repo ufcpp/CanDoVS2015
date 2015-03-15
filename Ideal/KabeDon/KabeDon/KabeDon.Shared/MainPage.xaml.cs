@@ -34,13 +34,12 @@ namespace KabeDon
             var levelFolder = await root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
 
             var m = new PackageManager();
-            await m.LoadFrom(levelFolder);
+            await m.LoadFrom(levelFolder, new Sound.SoundPlayerFactory());
 
             var vm = new KabeDonViewModel(m);
             DataContext = vm;
 
             //↓ behavior 化したい
-            vm.SoundRequested.ObserveOn(SynchronizationContext.Current).Subscribe(PlaySound);
             Cloudia.Tapped += (_, me) =>
             {
                 var position = me.GetPosition(Cloudia);
@@ -65,7 +64,7 @@ namespace KabeDon
             }
         }
 
-        private void PlaySound(string path)
+        private void PlaySound(string path, KabeDonViewModel vm)
         {
             try
             {

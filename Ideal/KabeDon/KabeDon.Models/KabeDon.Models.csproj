@@ -56,10 +56,12 @@
     <Compile Include="Engine\Messages\Message.cs" />
     <Compile Include="Engine\Messages\PlaySound.cs" />
     <Compile Include="Engine\Messages\AwaitStart.cs" />
+    <Compile Include="Sound\ISoundPlayer.cs" />
     <Compile Include="Packaging\IStorage.cs" />
     <Compile Include="Packaging\PackageManager.cs" />
     <Compile Include="Packaging\StorageExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sound\ISoundPlayerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

@@ -11,6 +11,7 @@ using KabeDon.Engine;
 using System.Net.Http;
 using System.Linq;
 using System.Threading;
+using KabeDon.Sound;
 
 namespace Kabedon.Droid
 {
@@ -94,7 +95,7 @@ namespace Kabedon.Droid
             var levelFolder = await root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
 
             var m = new PackageManager();
-            await m.LoadFrom(levelFolder);
+            await m.LoadFrom(levelFolder, new SoundPlayerFactory());
             return m;
         }
 

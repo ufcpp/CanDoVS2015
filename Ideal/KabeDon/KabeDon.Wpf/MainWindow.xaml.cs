@@ -43,14 +43,13 @@ namespace KabeDon.Wpf
             var levelFolder = await root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
 
             var m = new PackageManager();
-            await m.LoadFrom(levelFolder);
+            await m.LoadFrom(levelFolder, new Sound.SoundPlayerFactory());
 #endif
 
             var vm = new KabeDonViewModel(m);
             DataContext = vm;
 
             //↓ behavior 化したい
-            vm.SoundRequested.ObserveOn(SynchronizationContext.Current).Subscribe(PlaySound);
             Cloudia.MouseDown += (_, me) =>
             {
                 var position = me.GetPosition(Cloudia);

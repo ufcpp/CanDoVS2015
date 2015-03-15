@@ -29,7 +29,7 @@ namespace KabeDon.Engine
             var channel = Engine.Channel;
             StartCommand = channel.SetCommand<M.Message, M.AwaitStart>();
             TapCommand = channel.SetCommand<M.Message, M.AwaitTap, D.Point>();
-            SoundRequested = channel.AsObservable<M.Message, M.PlaySound>().Select(x => manager.GetSound(x.Name));
+            channel.SetHandler<M.PlaySound>(x => manager.SoundPlayer.Play(x.Name));
         }
 
         /// <summary>
@@ -51,10 +51,5 @@ namespace KabeDon.Engine
         /// タップ待ち。
         /// </summary>
         public ICommand TapCommand { get; }
-
-        /// <summary>
-        /// 音声再生要求イベント。
-        /// </summary>
-        public IObservable<string> SoundRequested { get; }
     }
 }

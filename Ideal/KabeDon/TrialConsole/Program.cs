@@ -17,14 +17,13 @@ namespace TrialConsole
         {
             var s = FileStorage.Level("SampleData");
             var m = new PackageManager();
-            await m.LoadFrom(s);
+            await m.LoadFrom(s, new KabeDon.Sound.DummySoundPlayerFactory());
 
             var level = m.Level;
             Console.WriteLine(level.InitialState);
             foreach (var state in level.States) Console.WriteLine(state.Id);
 
             foreach (var x in m.ImageFiles) Console.WriteLine(x);
-            foreach (var x in m.SoundFiles) Console.WriteLine(x);
 
             using (var stream = File.Open("test.zip", FileMode.Create))
                 await PackageManager.Pack(s, stream);
