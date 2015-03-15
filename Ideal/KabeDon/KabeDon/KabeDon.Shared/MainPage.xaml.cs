@@ -1,5 +1,6 @@
 ﻿using KabeDon.Engine;
 using KabeDon.Packaging;
+using KabeDon.Sound;
 using System;
 using System.Linq;
 using System.Reactive.Linq;
@@ -24,18 +25,7 @@ namespace KabeDon
         {
             // サーバーとデータ同期
             var servarUrl = "http://testkabedoncloudia.azurewebsites.net/";
-            var root = FileStorage.Root();
-
-            await PackageManager.Synchronize(servarUrl, root);
-
-            //todo: 複数のレベルを読める場合、どれを読むかの選択。今は1個目固定。
-            var paths = await root.GetSubfolderPathsAsync();
-            var first = paths.First();
-            var levelFolder = await root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
-
-            var m = new PackageManager();
-            await m.LoadFrom(levelFolder, new Sound.SoundPlayerFactory());
-
+            var m = await PackageManager.LoadAsync(servarUrl, FileStorage.Root(), new SoundPlayerFactory());
             var vm = new KabeDonViewModel(m);
             DataContext = vm;
 

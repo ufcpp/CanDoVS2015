@@ -27,10 +27,32 @@ namespace KabeDon.Packaging
         public ISoundPlayer SoundPlayer { get; private set; }
 
         /// <summary>
+        /// サーバーと同期してからレベルを読み込む。
+        /// </summary>
+        /// <param name="serverUrl">サーバーURL。</param>
+        /// <param name="root">ルート フォルダー。</param>
+        /// <param name="factory">サウンドプレイヤーのファクトリ。</param>
+        /// <returns></returns>
+        public static async Task<PackageManager> LoadAsync(string serverUrl, IStorage root, ISoundPlayerFactory factory)
+        {
+            await Synchronize(serverUrl, root);
+
+            //todo: 複数のレベルを読める場合、どれを読むかの選択。今は1個目固定。
+            var paths = await root.GetSubfolderPathsAsync();
+            var first = paths.First();
+            var levelFolder = await root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
+
+            var m = new PackageManager();
+            await m.LoadFromLocalAsync(levelFolder, factory);
+            return m;
+        }
+
+        /// <summary>
         /// データの読み込み。
         /// </summary>
         /// <param name="root">レベル データの入っているフォルダー。</param>
-        public async Task LoadFrom(IStorage root, ISoundPlayerFactory factory)
+        /// <param name="factory">サウンドプレイヤーのファクトリ。</param>
+        public async Task LoadFromLocalAsync(IStorage root, ISoundPlayerFactory factory)
         {
             var json = await root.ReadStringAsync("level.json");
             Level = Newtonsoft.Json.JsonConvert.DeserializeObject<Level>(json);

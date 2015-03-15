@@ -2,14 +2,9 @@
 using KabeDon.Packaging;
 using KabeDon.Sound;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
 using System.Reactive.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -32,8 +27,7 @@ namespace KabeDon.XamarinForms
 
         protected override async void OnStart()
         {
-            PackageManager m = await Load();
-
+            var m = await PackageManager.LoadAsync(_serverUrl, _root, _soundFactory);
             var vm = new KabeDonViewModel(m);
 
             var startButton = new Button()
@@ -114,29 +108,6 @@ namespace KabeDon.XamarinForms
         protected override void OnResume()
         {
             // Handle when your app resumes
-        }
-
-        private async Task<PackageManager> Load()
-        {
-            await PackageManager.Synchronize(_serverUrl, _root);
-
-            //todo: 複数のレベルを読める場合、どれを読むかの選択。今は1個目固定。
-            var paths = await _root.GetSubfolderPathsAsync();
-            var first = paths.First();
-            var levelFolder = await _root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
-
-            var m = new PackageManager();
-            await m.LoadFrom(levelFolder, _soundFactory);
-            return m;
-        }
-
-        private async Task<string[]> LoadLevelList()
-        {
-            var c = new HttpClient();
-            var res = await c.GetAsync(_serverUrl + "Level");
-            var content = await res.Content.ReadAsStringAsync();
-            var list = content.Split(',');
-            return list;
         }
     }
 }

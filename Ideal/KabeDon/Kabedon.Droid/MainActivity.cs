@@ -35,10 +35,7 @@ namespace Kabedon.Droid
             SetContentView(Resource.Layout.Main);
 
             var url = Resources.GetString(Resource.String.ServerUrl);
-            var root = FileStorage.Root();
-
-            var m = await Load(url, root);
-
+            var m = await KabeDon.Packaging.PackageManager.LoadAsync(url, FileStorage.Root(), new SoundPlayerFactory());
             var vm = new KabeDonViewModel(m);
 
             var image = FindViewById<ImageView>(Resource.Id.CloudiaImage);
@@ -50,12 +47,6 @@ namespace Kabedon.Droid
                 var uri = Android.Net.Uri.FromFile(file);
                 t.SetImageURI(uri);
             });
-
-            // Get our button from the layout resource,
-            // and attach an event to it
-            var button = FindViewById<Button>(Resource.Id.MyButton);
-
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
 
             try
             {
@@ -83,20 +74,6 @@ namespace Kabedon.Droid
             {
                 if (arg.PropertyName == sourceName) bind(vm, target);
             };
-        }
-
-        private async Task<PackageManager> Load(string serverUrl, IStorage root)
-        {
-            await KabeDon.Packaging.PackageManager.Synchronize(serverUrl, root);
-
-            //todo: 複数のレベルを読める場合、どれを読むかの選択。今は1個目固定。
-            var paths = await root.GetSubfolderPathsAsync();
-            var first = paths.First();
-            var levelFolder = await root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
-
-            var m = new PackageManager();
-            await m.LoadFrom(levelFolder, new SoundPlayerFactory());
-            return m;
         }
 
         private async Task<string[]> LoadLevelList(string serverUrl)

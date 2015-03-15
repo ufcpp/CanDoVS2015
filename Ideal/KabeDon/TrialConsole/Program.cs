@@ -17,7 +17,7 @@ namespace TrialConsole
         {
             var s = FileStorage.Level("SampleData");
             var m = new PackageManager();
-            await m.LoadFrom(s, new KabeDon.Sound.DummySoundPlayerFactory());
+            await m.LoadFromLocalAsync(s, new KabeDon.Sound.DummySoundPlayerFactory());
 
             var level = m.Level;
             Console.WriteLine(level.InitialState);

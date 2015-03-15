@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using MediaPlayer = System.Windows.Media.MediaPlayer;
 using KabeDon.Packaging;
 using System.Linq;
+using KabeDon.Sound;
 
 namespace KabeDon.Wpf
 {
@@ -33,17 +34,7 @@ namespace KabeDon.Wpf
 #else
             // サーバーとデータ同期
             var servarUrl = "http://testkabedoncloudia.azurewebsites.net/";
-            var root = FileStorage.Root();
-
-            await PackageManager.Synchronize(servarUrl, root);
-
-            //todo: 複数のレベルを読める場合、どれを読むかの選択。今は1個目固定。
-            var paths = await root.GetSubfolderPathsAsync();
-            var first = paths.First();
-            var levelFolder = await root.GetSubfolderAsync(new Uri(first, UriKind.Absolute));
-
-            var m = new PackageManager();
-            await m.LoadFrom(levelFolder, new Sound.SoundPlayerFactory());
+            var m = await PackageManager.LoadAsync(servarUrl, FileStorage.Root(), new SoundPlayerFactory());
 #endif
 
             var vm = new KabeDonViewModel(m);
