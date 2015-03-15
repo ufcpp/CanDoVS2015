@@ -40,7 +40,7 @@ namespace KabeDon
             DataContext = vm;
 
             //↓ behavior 化したい
-            vm.SoundRequested.SubscribeOn(SynchronizationContext.Current).Subscribe(PlaySound);
+            vm.SoundRequested.ObserveOn(SynchronizationContext.Current).Subscribe(PlaySound);
             Cloudia.Tapped += (_, me) =>
             {
                 var position = me.GetPosition(Cloudia);
@@ -67,9 +67,17 @@ namespace KabeDon
 
         private void PlaySound(string path)
         {
-            //var player = new MediaPlayer();
-            //player.Open(new Uri(path, UriKind.Absolute));
-            //player.Play();
+            try
+            {
+                var media = new Windows.UI.Xaml.Controls.MediaElement();
+                media.AutoPlay = false;
+                media.Source = new Uri(path, UriKind.Absolute);
+                media.Play();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
         }
     }
 }

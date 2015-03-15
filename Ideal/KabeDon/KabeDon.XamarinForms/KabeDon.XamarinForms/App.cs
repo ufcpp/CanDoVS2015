@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace KabeDon.XamarinForms
 
             var vm = new KabeDonViewModel(m);
 
-            vm.SoundRequested.Subscribe(_player.Play);
+            vm.SoundRequested.ObserveOn(SynchronizationContext.Current).Subscribe(_player.Play);
 
             var startButton = new Button()
             {

@@ -24,7 +24,7 @@ namespace KabeDon.Wpf
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-#if true
+#if false
             // アプリ同梱データから読む
             var m = new PackageManager();
             var folder = Path.GetDirectoryName(typeof(MainWindow).Assembly.Location);
@@ -50,7 +50,7 @@ namespace KabeDon.Wpf
             DataContext = vm;
 
             //↓ behavior 化したい
-            vm.SoundRequested.SubscribeOn(SynchronizationContext.Current).Subscribe(PlaySound);
+            vm.SoundRequested.ObserveOn(SynchronizationContext.Current).Subscribe(PlaySound);
             Cloudia.MouseDown += (_, me) =>
             {
                 var position = me.GetPosition(Cloudia);
