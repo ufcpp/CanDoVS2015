@@ -24,12 +24,12 @@
                     </StackPanel.Resources>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="スコア: " />
-                        <TextBlock Text="{Binding Engine.Score}" FontSize="50" />
+                        <TextBlock Text="スコア: " Style="{StaticResource TextStyle}" />
+                        <TextBlock Text="{Binding Engine.Score}" Style="{StaticResource TextStyle}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="残り時間: "/>
-                        <TextBlock Text="{Binding Engine.RemainderTime}" />
+                        <TextBlock Text="残り時間: " Style="{StaticResource TextStyle}"/>
+                        <TextBlock Text="{Binding Engine.RemainderTime}" Style="{StaticResource TextStyle}" />
                     </StackPanel>
 
                 </StackPanel>
