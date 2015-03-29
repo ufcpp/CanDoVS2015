@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -25,6 +26,17 @@ namespace KabeDon
         public MainPage()
         {
             this.InitializeComponent();
+
+            var i = 1;
+
+            image.PointerPressed += (sender, arg) =>
+            {
+                ++i;
+                if (i > 4) i = 1;
+
+                var bitmap = new BitmapImage(new Uri($"ms-appx:///Assets/Image/Cloudia{i}.png"));
+                image.Source = bitmap;
+            };
         }
     }
 }
