@@ -38,13 +38,13 @@ namespace KabeDon
                 new Area { X = 271, Y = 772, Width = 590, Height = 1148, Image = "Cloudia4", Sound = "chui" },
             };
 
-            image.PointerPressed += async (sender, arg) =>
+            image.Tapped += async (sender, arg) =>
             {
-                var pos = arg.GetCurrentPoint(image);
+                var pos = arg.GetPosition(image);
 
                 // 今の座標 ÷ 表示されている画像サイズ × 元の画像サイズ
-                var x = pos.Position.X / image.ActualWidth * 1080;
-                var y = pos.Position.Y / image.ActualHeight * 1920;
+                var x = pos.X / image.ActualWidth * 1080;
+                var y = pos.Y / image.ActualHeight * 1920;
 
                 foreach (var area in areas)
                 {
