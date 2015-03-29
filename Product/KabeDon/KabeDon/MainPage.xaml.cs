@@ -34,6 +34,8 @@ namespace KabeDon
                 ++i;
                 if (i > 4) i = 1;
 
+                mediaElement.Play();
+
                 var bitmap = new BitmapImage(new Uri($"ms-appx:///Assets/Image/Cloudia{i}.png"));
                 image.Source = bitmap;
             };

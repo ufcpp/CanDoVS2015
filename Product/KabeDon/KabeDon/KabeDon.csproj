@@ -126,6 +126,14 @@
     <Content Include="Assets\Image\Cloudia4.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\Sound\ah.mp3" />
+    <Content Include="Assets\Sound\chui.mp3" />
+    <Content Include="Assets\Sound\ei.mp3" />
+    <Content Include="Assets\Sound\finish.mp3" />
+    <Content Include="Assets\Sound\hai.mp3" />
+    <Content Include="Assets\Sound\mataatode.mp3" />
+    <Content Include="Assets\Sound\oujougiwa.mp3" />
+    <Content Include="Assets\Sound\start.mp3" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
   </ItemGroup>
