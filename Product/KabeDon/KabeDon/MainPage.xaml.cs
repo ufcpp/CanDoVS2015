@@ -28,6 +28,15 @@ namespace KabeDon
         {
             this.InitializeComponent();
 
+            var areas = new[]
+            {
+                new Area { X = 396, Y = 238, Width = 320, Height =  108, Image = "Cloudia4", Sound = "chui" },
+                new Area { X = 365, Y = 215, Width = 380, Height =  529, Image = "Cloudia2", Sound = "ah" },
+                new Area { X = 276, Y = 340, Width =  65, Height =  415, Image = "Cloudia3", Sound = "hai" },
+                new Area { X = 739, Y = 340, Width =  65, Height =  415, Image = "Cloudia3", Sound = "hai" },
+                new Area { X = 271, Y = 772, Width = 590, Height = 1148, Image = "Cloudia4", Sound = "chui" },
+            };
+
             var i = 1;
 
             image.PointerPressed += async (sender, arg) =>
