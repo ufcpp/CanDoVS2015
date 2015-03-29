@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -40,6 +41,8 @@ namespace KabeDon
 
             image.Tapped += async (sender, arg) =>
             {
+                image.IsTapEnabled = false;
+
                 var pos = arg.GetPosition(image);
 
                 // 今の座標 ÷ 表示されている画像サイズ × 元の画像サイズ
@@ -52,20 +55,35 @@ namespace KabeDon
                         && area.Y < y && y < area.Y + area.Height)
                     {
                         var mediaUri = new Uri($"ms-appx:///Assets/Sound/{area.Sound}.mp3");
-                        var file = await StorageFile.GetFileFromApplicationUriAsync(mediaUri);
-                        var stream = await file.OpenReadAsync();
-                        var media = new MediaElement();
-                        media.SetSource(stream, file.ContentType);
-                        media.Play();
+                        await PlaySound(mediaUri);
 
                         var imageUri = new Uri($"ms-appx:///Assets/Image/{area.Image}.png");
-                        var bitmap = new BitmapImage(imageUri);
-                        image.Source = bitmap;
+                        ShowImage(imageUri);
 
-                        return;
+                        break;
                     }
                 }
+
+                await Task.Delay(1000);
+                image.IsTapEnabled = true;
+
+                ShowImage(new Uri("ms-appx:///Assets/Image/Cloudia1.png"));
             };
+        }
+
+        private void ShowImage(Uri imageUri)
+        {
+            var bitmap = new BitmapImage(imageUri);
+            image.Source = bitmap;
+        }
+
+        private static async Task PlaySound(Uri mediaUri)
+        {
+            var file = await StorageFile.GetFileFromApplicationUriAsync(mediaUri);
+            var stream = await file.OpenReadAsync();
+            var media = new MediaElement();
+            media.SetSource(stream, file.ContentType);
+            media.Play();
         }
     }
 }
