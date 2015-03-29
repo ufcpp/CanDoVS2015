@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,8 +30,17 @@ namespace KabeDon
 
             var i = 1;
 
-            image.PointerPressed += (sender, arg) =>
+            image.PointerPressed += async (sender, arg) =>
             {
+                var pos = arg.GetCurrentPoint(image);
+
+                // 今の座標 ÷ 表示されている画像サイズ × 元の画像サイズ
+                var x = pos.Position.X / image.ActualWidth * 1080;
+                var y = pos.Position.Y / image.ActualHeight * 1920;
+
+                var dialog = new MessageDialog($"({x}, {y}) をタップしました");
+                await dialog.ShowAsync();
+
                 ++i;
                 if (i > 4) i = 1;
 
