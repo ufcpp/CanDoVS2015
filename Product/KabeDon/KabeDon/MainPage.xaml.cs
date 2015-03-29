@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -37,8 +38,6 @@ namespace KabeDon
                 new Area { X = 271, Y = 772, Width = 590, Height = 1148, Image = "Cloudia4", Sound = "chui" },
             };
 
-            var i = 1;
-
             image.PointerPressed += async (sender, arg) =>
             {
                 var pos = arg.GetCurrentPoint(image);
@@ -47,16 +46,25 @@ namespace KabeDon
                 var x = pos.Position.X / image.ActualWidth * 1080;
                 var y = pos.Position.Y / image.ActualHeight * 1920;
 
-                var dialog = new MessageDialog($"({x}, {y}) をタップしました");
-                await dialog.ShowAsync();
+                foreach (var area in areas)
+                {
+                    if (area.X < x && x < area.X + area.Width
+                        && area.Y < y && y < area.Y + area.Height)
+                    {
+                        var mediaUri = new Uri($"ms-appx:///Assets/Sound/{area.Sound}.mp3");
+                        var file = await StorageFile.GetFileFromApplicationUriAsync(mediaUri);
+                        var stream = await file.OpenReadAsync();
+                        var media = new MediaElement();
+                        media.SetSource(stream, file.ContentType);
+                        media.Play();
 
-                ++i;
-                if (i > 4) i = 1;
+                        var imageUri = new Uri($"ms-appx:///Assets/Image/{area.Image}.png");
+                        var bitmap = new BitmapImage(imageUri);
+                        image.Source = bitmap;
 
-                mediaElement.Play();
-
-                var bitmap = new BitmapImage(new Uri($"ms-appx:///Assets/Image/Cloudia{i}.png"));
-                image.Source = bitmap;
+                        return;
+                    }
+                }
             };
         }
     }
