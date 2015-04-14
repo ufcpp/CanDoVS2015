@@ -71,9 +71,12 @@ namespace KabeDon
             };
         }
 
-        private void ShowImage(Uri imageUri)
+        private async void ShowImage(Uri imageUri)
         {
-            var bitmap = new BitmapImage(imageUri);
+            var bitmap = new BitmapImage();
+            var file = await StorageFile.GetFileFromApplicationUriAsync(imageUri);
+            var stream = await file.OpenReadAsync();
+            await bitmap.SetSourceAsync(stream);
             image.Source = bitmap;
         }
 
