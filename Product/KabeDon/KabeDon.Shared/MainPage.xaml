@@ -9,7 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Image x:Name="image" Source="Assets/Image/Cloudia1.png"/>
-        <MediaElement x:Name="mediaElement" Source="Assets/Sound/hai.mp3" AutoPlay="False"/>
+        <MediaElement x:Name="mediaElement" />
 
     </Grid>
 </Page>

@@ -89,13 +89,14 @@ namespace KabeDon
             image.Source = bitmap;
         }
 
-        private static async void PlaySound(Uri mediaUri)
+        //MediaElement media = new MediaElement();
+
+        private async void PlaySound(Uri mediaUri)
         {
             var file = await StorageFile.GetFileFromApplicationUriAsync(mediaUri);
             var stream = await file.OpenReadAsync();
-            var media = new MediaElement();
-            media.SetSource(stream, file.ContentType);
-            media.Play();
+            mediaElement.SetSource(stream, file.ContentType);
+            mediaElement.Play();
         }
     }
 }
