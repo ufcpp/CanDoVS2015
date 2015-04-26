@@ -8,6 +8,15 @@ module KabeDon {
     export module Application {
         export function initialize() {
             document.addEventListener('deviceready', onDeviceReady, false);
+
+            var image = <HTMLImageElement>document.getElementById("image");
+            var i = 1;
+
+            image.onmousedown = ev => {
+                i++;
+                if (i > 4) i = 1;
+                image.src = "images/Cloudia" + i + ".png";
+            };
         }
 
         function onDeviceReady() {
