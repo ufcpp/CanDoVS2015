@@ -45,7 +45,19 @@ namespace KabeDon.Android
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int Cloudia1 = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int Cloudia2 = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Cloudia3 = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int Cloudia4 = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int Icon = 2130837508;
 			
 			static Drawable()
 			{
